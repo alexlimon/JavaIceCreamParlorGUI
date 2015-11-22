@@ -203,9 +203,9 @@ public class MainFrame extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
        String command;
-      
+       
        command=e.getActionCommand();
-      
+      System.out.println(command);
        switch(command)
        {
             case cmdFileIceCream:
