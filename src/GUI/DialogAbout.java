@@ -7,7 +7,7 @@ package GUI;
 
 /**
  *
- * @author Eric
+ * @author Alex
  */
 public class DialogAbout extends javax.swing.JDialog {
 
@@ -19,8 +19,6 @@ public class DialogAbout extends javax.swing.JDialog {
         initComponents();
     }
 
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +28,6 @@ public class DialogAbout extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -38,29 +35,41 @@ public class DialogAbout extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(250, 200));
 
-        jLabel1.setText("The Honey-Badger Ice Cream Parlor");
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel2.setText("THE TEAM!!!!!");
 
-        jLabel2.setText("The TEAM");
+        jLabel3.setText("Members:");
 
-        jLabel3.setText("Team:");
+        jLabel4.setText("ID:");
 
-        jLabel4.setText("Team Members:");
+        jLabel5.setForeground(new java.awt.Color(153, 0, 51));
+        jLabel5.setText("Mistere Abete");
 
-        jLabel5.setText("Mistere Abate");
+        jLabel6.setForeground(new java.awt.Color(153, 0, 51));
+        jLabel6.setText("1001085587");
 
-        jLabel6.setText("Alex Limon");
-
+        jLabel7.setForeground(new java.awt.Color(153, 0, 51));
         jLabel7.setText("Lacherois Boussou");
 
-        jLabel8.setLabelFor(jLabel1);
-        jLabel8.setText("Project");
-        jLabel8.setToolTipText("");
+        jLabel8.setForeground(new java.awt.Color(153, 0, 51));
+        jLabel8.setText("1001131379");
+
+        jLabel9.setForeground(new java.awt.Color(153, 0, 51));
+        jLabel9.setText("Alex Limón Naranjo");
+
+        jLabel10.setForeground(new java.awt.Color(153, 0, 51));
+        jLabel10.setText("1000818599");
 
         jButton1.setText("OK");
+        jButton1.setLocation(new java.awt.Point(250, 200));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -72,57 +81,59 @@ public class DialogAbout extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel3))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
                             .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel7))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(86, 86, 86))))
+                            .addComponent(jLabel10)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addComponent(jButton1)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+       dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -169,7 +180,7 @@ public class DialogAbout extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -177,5 +188,6 @@ public class DialogAbout extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }

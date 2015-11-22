@@ -37,7 +37,8 @@ public class MainFrame extends JFrame implements ActionListener
     public static final String labelUpdate="Update";
     public static final String labelTasks="Tasks";
     public static final String labelCharts="Charts";
-        
+    public static final String labelAbout= "About";    
+    
     public static final String cmdFileIceCream="Load Ice Cream";
     public static final String cmdFileWorkers="Load Workers";
     public static final String cmdFileCustomers="Load Customers";
@@ -63,8 +64,8 @@ public class MainFrame extends JFrame implements ActionListener
     public static final String cmdChartBarHappiness="Happiness Bar Chart";
     public static final String cmdChartBarMoney="Money Bar Chart";
     
-    public static final String cmdAbout="About";
-    
+    public static final String cmdAboutTeam="About Team";
+    public static final String cmdAboutOther="Other";
     //Here is the Menu Bar. It is very hard to have a Menu Frame without a Menu Bar
     JMenuBar menuBar;
     
@@ -74,10 +75,9 @@ public class MainFrame extends JFrame implements ActionListener
     JMenu menuUpdate;//Update individuals
     JMenu menuTasks;//Placing and paying for orders
     JMenu menuCharts;//Showing Charts
+    JMenu menuAbout;
     
-    
-    //Here are all the clickble items on the menu bar.
-    //Good gosh, there are a lot for such a small program!
+   
     
  
     
@@ -108,13 +108,12 @@ public class MainFrame extends JFrame implements ActionListener
     JMenuItem menuItemChartBarHappiness;
     JMenuItem menuItemChartBarMoney;
     
-    JMenuItem menuItemAbout;
+    JMenuItem menuItemAboutTeam;
+    JMenuItem menuItemAboutOther;
     
-    //Hang on a minute! Why does Dr. Becker have this item here?
     JMenuItem menuItemBonus;
     
-    //This section is for creating a status document to show the activity
-    //in the Ice Cream Parlor. 
+ 
     JTextPane document;
    
     DialogAbout dialogAbout;
@@ -124,6 +123,7 @@ public class MainFrame extends JFrame implements ActionListener
     LCustomerDialog CustomerDialog;
     CreateCustomerDialog createCDialog;
     CreateWorkerDialog createWDialog;
+    AboutOtherDialog aboutOtherDialog;
     public MainFrame()
     {
         this.setTitle("Honey Badger Ice Cream Parlor");
@@ -139,7 +139,9 @@ public class MainFrame extends JFrame implements ActionListener
         CustomerDialog= new LCustomerDialog(this,true);
         createCDialog=new CreateCustomerDialog(this,true);
         createWDialog= new CreateWorkerDialog(this,true);
+        aboutOtherDialog= new AboutOtherDialog(this,true);
         shop = new Shop();
+        
         this.setSize(new Dimension(800,600));
         this.setVisible(true);
         
@@ -192,9 +194,10 @@ public class MainFrame extends JFrame implements ActionListener
         makeMenuItem(menuCharts, menuItemChartBarMoney,cmdChartBarMoney);       
         menuBar.add(menuCharts);
         
-        menuItemAbout = new JMenuItem(cmdAbout);
-        menuItemAbout.addActionListener(this);
-       menuBar.add(menuItemAbout);
+       menuAbout = new JMenu(labelAbout); 
+       makeMenuItem(menuAbout,menuItemAboutTeam,cmdAboutTeam);
+       makeMenuItem(menuAbout,menuItemAboutOther,cmdAboutOther);
+       menuBar.add(menuAbout);
       
        
 
@@ -280,9 +283,11 @@ public class MainFrame extends JFrame implements ActionListener
             case cmdChartBarMoney:
                 putLine("action:"+cmdChartBarMoney+"\n");
                 break;
-            case cmdAbout:
-                //putLine("action:"+cmdAbout+"\n");
+            case cmdAboutTeam:
                 dialogAbout.setVisible(true);
+                break;
+            case cmdAboutOther:
+                aboutOtherDialog.setVisible(true);
                 break;
            
                 
@@ -378,7 +383,7 @@ public void loadWorker(){
     this.setLocation(new Point(0,0));
     this.setVisible(true);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    Shop shop= new Shop();
+    
     JTextField tf=new JTextField();
    //tf.setInputVerifier(inputVerifier);
     JFileChooser loader=new JFileChooser(".");
@@ -444,11 +449,11 @@ public void loadWorker(){
                             {
                                 staminapatience= Integer.parseInt(elements[6]);
                             }
-            
+                             
                             shop.createLoadedWorker(ID, name, customersserved, numberscoops, moneytaken,workertype,staminapatience,onBreak);  
-                            
+                           
                         }   
-        
+           
                         WorkerDialog.setVisible(true);
                     }  
                      
