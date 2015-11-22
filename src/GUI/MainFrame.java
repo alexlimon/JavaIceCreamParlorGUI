@@ -205,7 +205,7 @@ public class MainFrame extends JFrame implements ActionListener
        String command;
        
        command=e.getActionCommand();
-      System.out.println(command);
+      
        switch(command)
        {
             case cmdFileIceCream:
