@@ -252,18 +252,15 @@ public class MainFrame extends JFrame implements ActionListener
                shop.createCustomer(name);
                break;
             case cmdUpdateIceCream:
-                icecreamUpdatefile();
-                updatedIceCream.setVisible(true);
+                icecreamUpdatefile();                
                 //putLine("action:"+cmdUpdateIceCream+"\n");
                 break;
             case cmdUpdateWorker:
-                workerUpdatefile();
-                updateWorker.setVisible(true);
+                workerUpdatefile();                
                 //putLine("action:"+cmdUpdateWorker+"\n");
                 break;
             case cmdUpdateCustomer:
-                customerUpdatefile();
-                 updateCustomer.setVisible(true);
+                customerUpdatefile();                 
                 //putLine("action:"+cmdUpdateCustomer+"\n");
                 break;
             case cmdTaskPlaceOrder:
@@ -394,7 +391,6 @@ public void loadWorker(){
     this.setLocation(new Point(0,0));
     this.setVisible(true);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    Shop shop= new Shop();
     JTextField tf=new JTextField();
    //tf.setInputVerifier(inputVerifier);
     JFileChooser loader=new JFileChooser(".");
@@ -626,7 +622,8 @@ public void icecreamUpdatefile(){
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        updatedIceCream.setVisible(true);
+                }
          else if(result==1){
                     loader.cancelSelection();
                 }
@@ -721,7 +718,8 @@ public void customerUpdatefile(){
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+        updateWorker.setVisible(true);
+                }
     
                else if(result==1){
                     loader.cancelSelection();
@@ -843,7 +841,7 @@ public void workerUpdatefile(){
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+         updateCustomer.setVisible(true);
         }
                 else if(result==1){
                     loader.cancelSelection();
