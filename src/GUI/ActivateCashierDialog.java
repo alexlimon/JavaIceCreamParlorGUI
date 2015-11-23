@@ -54,7 +54,8 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
     public void initComponents(ArrayList <XWorker> workerListz) {
       int i,count=0;
       String [] WorkerN= new String[workerListz.size()];
-     
+     //WorkerN is a string array that has memory allocated for all the workers
+      //workN actually only contains cashiers
    
      
       
@@ -64,14 +65,13 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
             {
               WorkerN[count]=workerListz.get(i).getWName();
               count+=1;
-
+             // Count is number of cashiers
                 
             }
         }
         
         CashierN= new String[count];
         for(i=0;i<count;i++) CashierN[i]= WorkerN[i];
-        System.out.printf("I'm here %d\n",CashierN.length);
         count=0;
          
         
@@ -89,20 +89,32 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
          
           jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(CashierN));
        
+       
+         
+         
+         
+         
         
-         jComboBox1.addActionListener(new java.awt.event.ActionListener(){
+        
+        jComboBox1.addActionListener(new java.awt.event.ActionListener(){
+            
+            
+            
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
                 jComboBox1ActionPerformed(evt);
             }
         });
          jButton1.setText("Activate");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().removeAll();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +146,6 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) { 
-        
         dispose();
     }      
     
