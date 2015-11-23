@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +54,7 @@ public class MainFrame extends JFrame implements ActionListener
     
     public static final String cmdTaskPlaceOrder="Place Order";
     public static final String cmdTaskPayOrder="Pay Order";
-    public static final String cmdTaskActiveCashier="Acitve Cashier";
+    public static final String cmdTaskActiveCashier="Active Cashier";
     public static final String cmdTaskActiveStocker="Active Stocker";
     public static final String cmdTaskOnBreakCashier="Cashier on Break";
     public static final String cmdTaskOnBreakStocker="Stocker on Break";
@@ -123,7 +124,13 @@ public class MainFrame extends JFrame implements ActionListener
     LWorkerDialog WorkerDialog;
     LCustomerDialog CustomerDialog;
     CreateCustomerDialog createCDialog;
-    CreateWorkerDialog createWDialog;
+    CreateWorkerD createWDialog;
+    ActivateStockerD activateSDialog;
+    ActivateStockerErrorDialog activateSError;
+    ActivateStockerMessageDialog activateSMess;
+    ActivateCashierDialog activateCDialog;
+    ActivateCashierErrorDialog activateCErrDialog;
+    ActivateCashierMessageDialog activateCMessDialog;
     public MainFrame()
     {
         this.setTitle("Honey Badger Ice Cream Parlor");
@@ -138,7 +145,13 @@ public class MainFrame extends JFrame implements ActionListener
         WorkerDialog= new LWorkerDialog(this,true);
         CustomerDialog= new LCustomerDialog(this,true);
         createCDialog=new CreateCustomerDialog(this,true);
-        createWDialog= new CreateWorkerDialog(this,true);
+        createWDialog= new CreateWorkerD(this,true);
+        activateSDialog=new ActivateStockerD(this,true);
+        activateSError=new ActivateStockerErrorDialog(this,true);
+        activateSMess=new ActivateStockerMessageDialog(this,true);
+        activateCDialog=new ActivateCashierDialog(this,true);
+        activateCErrDialog=new ActivateCashierErrorDialog(this,true);
+        activateCMessDialog= new ActivateCashierMessageDialog(this,true);
         shop = new Shop();
         this.setSize(new Dimension(800,600));
         this.setVisible(true);
@@ -216,15 +229,13 @@ public class MainFrame extends JFrame implements ActionListener
             case cmdFileWorkers:
                  //putLine("action:"+cmdFileWorkers+"\n");
                 loadWorker();
-                
+               
                 break;
             case cmdFileCustomers:
-                //putLine("action:"+cmdFileCustomers+"\n");
                 loadCustomer();
                 
                 break;
             case cmdFileExit:
-                //putLine("action:"+cmdFileExit+"\n");
                 System.exit(0);
                 break;
             case cmdCreateIceCream:
@@ -233,15 +244,20 @@ public class MainFrame extends JFrame implements ActionListener
             case cmdCreateWorker:
                 createWDialog.setVisible(true);
                 String wName=createWDialog.getWorkerName();
-                shop.createWorker(wName);
+                int wType=createWDialog.getWorkerType();
+                shop.createLoadedWorker(2004, wName, 00000,00000,0.00,wType, 10, false);
+               
                 break;
             case cmdCreateCustomer:
                // putLine("action:"+cmdCreateCustomer+"\n");
                createCDialog.setVisible(true);
                String name = createCDialog.getCustomerName();
                shop.createCustomer(name);
+               
+                
                break;
             case cmdUpdateIceCream:
+            
                 //putLine("action:"+cmdUpdateIceCream+"\n");
                 break;
             case cmdUpdateWorker:
@@ -257,10 +273,35 @@ public class MainFrame extends JFrame implements ActionListener
                 //putLine("action:"+cmdTaskPayOrder+"\n");
                 break;
             case cmdTaskActiveCashier:
-               // putLine("action:"+cmdTaskActiveCashier+"\n");
+               activateCDialog.initComponents(shop.getWorkers());
+               activateCDialog.setVisible(true);
+                String CashierName=activateCDialog.getCashierChosen();
+                int dec=shop.activateCashier(CashierName);
+                if(dec==-1){
+                    
+                    activateCErrDialog.setVisible(true);
+                }
+                else {
+                   activateCMessDialog.setVisible(true);
+                }
                 break;
             case cmdTaskActiveStocker:
-                //putLine("action:"+cmdTaskActiveStocker+"\n");
+               
+            
+                activateSDialog.initComponents(shop.getWorkers());
+                
+                activateSDialog.setVisible(true);
+                String StockerName=activateSDialog.getStockerChosen();
+                int decision = shop.activateStocker(StockerName);
+                if(decision==-1){
+                    
+                    activateSError.setVisible(true);
+                }
+                else {
+                   activateSMess.setVisible(true);
+                }
+                    
+                    
                 break;
             case cmdTaskOnBreakCashier:
                 //putLine("action:"+cmdTaskOnBreakCashier+"\n");
@@ -378,13 +419,13 @@ public void loadWorker(){
     this.setLocation(new Point(0,0));
     this.setVisible(true);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    Shop shop= new Shop();
+    
     JTextField tf=new JTextField();
    //tf.setInputVerifier(inputVerifier);
     JFileChooser loader=new JFileChooser(".");
                 int result=0;
 		result=loader.showDialog(this, "Load Workers");
-                System.out.println(result);
+               // System.out.println(result);
              
 		if (result==0)
 		{
@@ -401,7 +442,9 @@ public void loadWorker(){
                     int workertype=0;
                     int staminapatience=0;
                     boolean onBreak=false;
-    
+                    
+                    
+                   
   
     
     
@@ -448,7 +491,7 @@ public void loadWorker(){
                             shop.createLoadedWorker(ID, name, customersserved, numberscoops, moneytaken,workertype,staminapatience,onBreak);  
                             
                         }   
-        
+                              
                         WorkerDialog.setVisible(true);
                     }  
                      

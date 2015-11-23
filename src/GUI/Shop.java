@@ -87,7 +87,7 @@ public class Shop {
        if (workertype==1){
            
            tempstocker= new XStocker(name,ID,customersserved,scoopstaken,moneytaken,staminapatience,onBreak);
-          
+        
            
            workers.add(tempstocker);
           
@@ -101,6 +101,7 @@ public class Shop {
        }
            
        else{
+          
        tempworker= new XWorker();
        tempworker.setID(ID);
        tempworker.setName(name);
@@ -108,11 +109,10 @@ public class Shop {
        tempworker.setNumberscoops(scoopstaken);
        tempworker.setMoneytaken(moneytaken);
        tempworker.setWorkertype(workertype);
+       
        workers.add(tempworker);
        }
-       
-       
-       
+     
    }
       
  
@@ -429,64 +429,35 @@ public class Shop {
     }
 // HW3 time!!
     
-    public int activateStocker(int stockerposition){
+    public int activateStocker(String stockerName){
       
-        Scanner changebreak = new Scanner(System.in);
-        int switchbreak;
-        
-        
-        
-      if(stockerposition>=workers.size()){
-          System.out.println("");
-          System.out.println("Enter a valid stocker!");
-          return -1;
-       }  
-       if(workers.get(stockerposition).getWorkertype()!=1){
-          System.out.println("");
-          System.out.println("Enter a valid stocker!");
-          return -1; 
+        int i,stockerposition=0;
+        for(i=0;i<workers.size();i++)
+        {
+            if(workers.get(i).getName().equals(stockerName))
+            {
+                stockerposition=i;
+            }
+        }
+ 
+        if(workers.get(stockerposition).getWorkertype()!=1){
+         return -1; 
         } 
       activestocker= (XStocker)workers.get(stockerposition);
       
       if(activestocker.getStamina()<=0)
       {
-          System.out.println("");
-          System.out.println("Please choose a stocker that has more stamina.");
-          activestocker=null;
+        
           return -1;
           
       }
       if(activestocker.isOnBreak())
       {
-         do{ System.out.println("");
-          System.out.printf("Do you wish to end a %s's break? 0 for no and 1 for yes: ",activestocker.getName());
-          switchbreak = changebreak.nextInt();
-          if (switchbreak>1 || switchbreak<0){
-              System.out.println("");
-              System.out.println("Please enter 0 or 1!");
-              
-          }
-      }while(switchbreak>1 || switchbreak<0);
-         if (switchbreak ==1){
-             activestocker.setOnBreak(false);
-         }
-         else{
-              System.out.println("");
-             System.out.println("Enter a stocker that is not on break!");
-             return -1;
-        }
-         
-         
-          
+       activestocker.setOnBreak(false);
       }
-       
-      
-        
-        
-        
-        
-    return 0;    
-    }
+     return 0;       
+         
+   }
 
    
     
@@ -540,62 +511,35 @@ public class Shop {
        
        
        
-public int activateCashier(int cashierposition){
+public int activateCashier(String cashierName){
       
-        Scanner changebreak = new Scanner(System.in);
-        int switchbreak;
-        
-        
-      if(cashierposition>=workers.size()){
-          System.out.println("");
-          System.out.println("Enter a valid cashier!");
-          return -1;
-       }  
-       if(workers.get(cashierposition).getWorkertype()!=2){
-          System.out.println("");
-          System.out.println("Enter a valid cashier!");
-          return -1; 
+        int i,cashierposition=0;
+        for(i=0;i<workers.size();i++)
+        {
+            if(workers.get(i).getName().equals(cashierName))
+            {
+                cashierposition=i;
+            }
+        }
+ 
+        if(workers.get(cashierposition).getWorkertype()!=2){
+         return -1; 
         } 
-      activecashier= (XCashier)workers.get(cashierposition);
+      activecashier=(XCashier)workers.get(cashierposition);
       
       if(activecashier.getPatience()<=0)
       {
-          System.out.println("");
-          System.out.println("Please choose a cashier that has more patience.");
-          activecashier=null;
+        
           return -1;
           
       }
       if(activecashier.isOnBreak())
       {
-          do{ System.out.println("");
-          System.out.printf("Do you wish to end a %s's break? 0 for no and 1 for yes: ",activecashier.getName());
-          switchbreak = changebreak.nextInt();
-          if (switchbreak>1 || switchbreak<0){
-              System.out.println("");
-              System.out.println("Please enter 0 or 1!");
-              
-          }
-      }while(switchbreak>1 || switchbreak<0);
-         if (switchbreak ==1){
-             activecashier.setOnBreak(false);
-         }
-         else{
-              System.out.println("");
-             System.out.println("Enter a cashier that is not on break!");
-             return -1;
-        }
-          
+       activestocker.setOnBreak(false);
       }
-       
-      
-        
-        
-        
-        
-    return 0;    
-    }               
- 
+     return 0;       
+         
+   }
    
    
 public int cashierBreak(int cashierposition){
