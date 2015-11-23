@@ -36,7 +36,7 @@ public class MainFrame extends JFrame implements ActionListener
     
     public static final String labelFile="File";
     public static final String labelCreate="Create";
-    public static final String labelUpdate="Update";
+    public static final String labelUpdate="Save Files";
     public static final String labelTasks="Tasks";
     public static final String labelCharts="Charts";
     public static final String labelAbout= "About";    
@@ -50,9 +50,9 @@ public class MainFrame extends JFrame implements ActionListener
     public static final String cmdCreateWorker="Create Worker";
     public static final String cmdCreateCustomer="Create Customer";
 
-    public static final String cmdUpdateIceCream="Update Ice Cream";
-    public static final String cmdUpdateWorker="Update Worker";
-    public static final String cmdUpdateCustomer="Update Customer";
+    public static final String cmdUpdateIceCream="Save Ice Cream As";
+    public static final String cmdUpdateWorker="Save Worker As";
+    public static final String cmdUpdateCustomer="Save Customer As";
     
     public static final String cmdTaskPlaceOrder="Place Order";
     public static final String cmdTaskPayOrder="Pay Order";
@@ -301,6 +301,7 @@ public class MainFrame extends JFrame implements ActionListener
                 else {
                    activateCMessDialog.setVisible(true);
                 }
+                
                 break;
             case cmdTaskActiveStocker:
                 activateSDialog.initComponents(shop.getWorkers());
