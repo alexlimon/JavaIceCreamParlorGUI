@@ -132,6 +132,9 @@ public class MainFrame extends JFrame implements ActionListener
     ActivateCashierDialog activateCDialog;
     ActivateCashierErrorDialog activateCErrDialog;
     ActivateCashierMessageDialog activateCMessDialog;
+    OnBreakStockerDialog onBreakSDialog;
+    OnBreakStockerErrorDialog onBreakSErr;
+    OnBreakStockerMessageDialog onBreakSMess;
     UpdatedCustomer updateCustomer;
     UpdateWorker updateWorker;
     UpdatedIceCream updatedIceCream;
@@ -162,6 +165,11 @@ public class MainFrame extends JFrame implements ActionListener
         activateCDialog=new ActivateCashierDialog(this,true);
         activateCErrDialog=new ActivateCashierErrorDialog(this,true);
         activateCMessDialog= new ActivateCashierMessageDialog(this,true);
+        
+        
+        onBreakSDialog=new OnBreakStockerDialog(this,true);
+        onBreakSErr= new OnBreakStockerErrorDialog(this,true);
+        onBreakSMess= new OnBreakStockerMessageDialog(this,true);
         
         
         updateCustomer = new UpdatedCustomer(this, true);
@@ -298,13 +306,12 @@ public class MainFrame extends JFrame implements ActionListener
                     
                     activateCErrDialog.setVisible(true);
                 }
-                else {
+                if(dec==0) {
                    activateCMessDialog.setVisible(true);
                 }
-                
                 break;
             case cmdTaskActiveStocker:
-                activateSDialog.initComponents(shop.getWorkers());
+                 activateSDialog.initComponents(shop.getWorkers());
                 activateSDialog.setVisible(true);
                 String StockerName=activateSDialog.getStockerChosen();
                 int decision = shop.activateStocker(StockerName);
@@ -312,15 +319,25 @@ public class MainFrame extends JFrame implements ActionListener
                     
                     activateSError.setVisible(true);
                 }
-                else {
+                if(decision==0){
                    activateSMess.setVisible(true);
                 }
                 break;
             case cmdTaskOnBreakCashier:
                 //putLine("action:"+cmdTaskOnBreakCashier+"\n");
                 break;
-            case cmdTaskOnBreakStocker:
-                //putLine("action:"+cmdTaskOnBreakStocker+"\n");
+             case cmdTaskOnBreakStocker:
+                onBreakSDialog.initComponents(shop.getWorkers());
+                onBreakSDialog.setVisible(true);
+                String StockerN=onBreakSDialog.getStockerChosen();
+                int d=shop.stockerBreak(StockerN);
+                if(d==-1)
+                {
+                  onBreakSErr.setVisible(true);
+                }
+                if(d==0){
+                    onBreakSMess.setVisible(true);
+                }
                 break;
             case cmdChartPieHappiness:
                 //putLine("action:"+cmdChartPieHappiness+"\n");

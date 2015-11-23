@@ -488,23 +488,23 @@ public class Shop {
     }        
             
             
-   public int stockerBreak(int stockerposition){
+public int stockerBreak(String stockerName){
        
-       if(stockerposition>=workers.size()){
-          System.out.println("");
-          System.out.println("Enter a valid stocker!");
-          return -1;
-       }  
-       if(workers.get(stockerposition).getWorkertype()!=1){
-          System.out.println("");
-          System.out.println("Enter a valid stocker!");
-          return -1; 
+       int i,stockerposition=0;
+        for(i=0;i<workers.size();i++)
+        {
+            if(workers.get(i).getName().equals(stockerName))
+            {
+                stockerposition=i;
+            }
+        }
+        if(workers.get(stockerposition).getWorkertype()!=1){
+         return -1; 
         } 
        
        XStocker breakstocker= (XStocker)workers.get(stockerposition);
        breakstocker.setOnBreak(true);
-       System.out.println("");
-       System.out.printf("%s is now on break!\n",breakstocker.getWName());
+       
        return 0;
           
    } 
