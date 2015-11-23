@@ -90,7 +90,7 @@ public class CreateWorkerD extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addComponent(jButton1)))
-                .addGap(0, 158, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +105,7 @@ public class CreateWorkerD extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jButton1)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("Enter Worker name:");

@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -131,10 +132,12 @@ public class MainFrame extends JFrame implements ActionListener
     ActivateCashierDialog activateCDialog;
     ActivateCashierErrorDialog activateCErrDialog;
     ActivateCashierMessageDialog activateCMessDialog;
-
+    UpdatedCustomer updateCustomer;
+    UpdateWorker updateWorker;
+    UpdatedIceCream updatedIceCream;
    
     AboutOtherDialog aboutOtherDialog;
-
+    Formatter writer;
     public MainFrame()
     {
         this.setTitle("Honey Badger Ice Cream Parlor");
@@ -144,27 +147,38 @@ public class MainFrame extends JFrame implements ActionListener
         
         makeDocument();
         
-        dialogAbout=new DialogAbout(this,true);
+        
+        
         ICDialog = new LoadICDialog(this,true);
         WorkerDialog= new LWorkerDialog(this,true);
         CustomerDialog= new LCustomerDialog(this,true);
+        
         createCDialog=new CreateCustomerDialog(this,true);
-
         createWDialog= new CreateWorkerD(this,true);
+        
         activateSDialog=new ActivateStockerD(this,true);
         activateSError=new ActivateStockerErrorDialog(this,true);
         activateSMess=new ActivateStockerMessageDialog(this,true);
         activateCDialog=new ActivateCashierDialog(this,true);
         activateCErrDialog=new ActivateCashierErrorDialog(this,true);
         activateCMessDialog= new ActivateCashierMessageDialog(this,true);
+        
+        
+        updateCustomer = new UpdatedCustomer(this, true);
+        updateWorker = new UpdateWorker(this, true);
+        updatedIceCream = new UpdatedIceCream(this, true);
 
-        createWDialog= new CreateWorkerD(this,true);
+        dialogAbout=new DialogAbout(this,true);
         aboutOtherDialog= new AboutOtherDialog(this,true);
 
         shop = new Shop();
         
         this.setSize(new Dimension(800,600));
         this.setVisible(true);
+        
+        
+        
+        
         
     }
 
@@ -233,50 +247,42 @@ public class MainFrame extends JFrame implements ActionListener
        switch(command)
        {
             case cmdFileIceCream:
-                //putLine("action:"+cmdFileIceCream+"\n");
-                loadIceCream();
+               loadIceCream();
                 break;
-                
             case cmdFileWorkers:
-                 //putLine("action:"+cmdFileWorkers+"\n");
                 loadWorker();
-               
                 break;
             case cmdFileCustomers:
                 loadCustomer();
-                
                 break;
             case cmdFileExit:
                 System.exit(0);
                 break;
             case cmdCreateIceCream:
-                //putLine("action:"+cmdCreateIceCream+"\n");
                 break;
             case cmdCreateWorker:
                 createWDialog.setVisible(true);
                 String wName=createWDialog.getWorkerName();
                 int wType=createWDialog.getWorkerType();
                 shop.createLoadedWorker(2004, wName, 00000,00000,0.00,wType, 10, false);
-               
                 break;
             case cmdCreateCustomer:
-               // putLine("action:"+cmdCreateCustomer+"\n");
                createCDialog.setVisible(true);
                String name = createCDialog.getCustomerName();
                shop.createCustomer(name);
-               
-                
                break;
             case cmdUpdateIceCream:
-            
-                //putLine("action:"+cmdUpdateIceCream+"\n");
-                break;
+               icecreamUpdatefile();
+               updatedIceCream.setVisible(true);
+               break;
             case cmdUpdateWorker:
-                //putLine("action:"+cmdUpdateWorker+"\n");
-                break;
+               workerUpdatefile();
+               updateWorker.setVisible(true);
+               break;
             case cmdUpdateCustomer:
-                //putLine("action:"+cmdUpdateCustomer+"\n");
-                break;
+               customerUpdatefile();
+               updateCustomer.setVisible(true);
+               break;
             case cmdTaskPlaceOrder:
                // putLine("action:"+cmdTaskPlaceOrder+"\n");
                 break;
@@ -297,10 +303,7 @@ public class MainFrame extends JFrame implements ActionListener
                 }
                 break;
             case cmdTaskActiveStocker:
-               
-            
                 activateSDialog.initComponents(shop.getWorkers());
-                
                 activateSDialog.setVisible(true);
                 String StockerName=activateSDialog.getStockerChosen();
                 int decision = shop.activateStocker(StockerName);
@@ -311,8 +314,6 @@ public class MainFrame extends JFrame implements ActionListener
                 else {
                    activateSMess.setVisible(true);
                 }
-                    
-                    
                 break;
             case cmdTaskOnBreakCashier:
                 //putLine("action:"+cmdTaskOnBreakCashier+"\n");
@@ -610,11 +611,322 @@ public void loadCustomer(){
     
     
     
+  public void icecreamUpdatefile(){
+        
+        this.setPreferredSize(new Dimension(800,600)); //this is creating the dialog for the loading of icecream
+        this.setSize(new Dimension(800,600));
+        this.setLocation(new Point(0,0));
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JTextField tf=new JTextField();
+        //tf.setInputVerifier(inputVerifier);
+        JFileChooser loader=new JFileChooser(".");
+        int result=0;
+        
+        result=loader.showDialog(this, "Save");
+        System.out.println(result);
+        
+        if (result==0)
+        {
+            System.out.println("Perform Action");
+            
+            File fp=loader.getSelectedFile();
+            
+            
+            
+            try {
+                
+                writer = new Formatter(fp);
+                String elements[];
+                int i;
+                
+                for(i=0;i<shop.getIcecreamz().size();i++){
+                    
+                    
+                    long ID=shop.getIcecreamz().get(i).getID();
+                    String flavor=shop.getIcecreamz().get(i).getFlavor();
+                    double price =shop.getIcecreamz().get(i).getPrice();
+                    String description=shop.getIcecreamz().get(i).getDescription();
+                    int scoopsleft=shop.getIcecreamz().get(i).getScoopsleft();
+                    writer.format("%s", ID);
+                    writer.format(",");
+                    writer.format("%s",price);
+                    writer.format(",");
+                    writer.format("%s",flavor);
+                    writer.format(",");
+                    writer.format("%s",flavor);
+                    writer.format(",");
+                    writer.format("%s",description);
+                    writer.format(",");
+                    writer.format("%s\r\n",scoopsleft);
+                    writer.flush();
+                    
+                }
+                
+                
+                
+                
+                
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(result==1){
+            loader.cancelSelection();
+        }
+        else
+        {
+            
+            System.out.println("Cancel Action");
+        }
+        
+        
+    }
+    
+    public void customerUpdatefile(){
+        
+        this.setPreferredSize(new Dimension(800,600)); //this is creating the dialog for the loading of icecream
+        this.setSize(new Dimension(800,600));
+        this.setLocation(new Point(0,0));
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JTextField tf=new JTextField();
+        //tf.setInputVerifier(inputVerifier);
+        JFileChooser loader=new JFileChooser(".");
+        int result=0;
+        
+        result=loader.showDialog(this, "Save");
+        System.out.println(result);
+        
+        if (result==0)
+        {
+            System.out.println("Perform Action");
+            
+            File fp=loader.getSelectedFile();
+            
+            
+            
+            try {
+                writer = new Formatter(fp);
+                String elements[];
+                int i;
+                
+                for(i=0;i<shop.getCustomers().size();i++){
+                    
+                    
+                    long ID=shop.getCustomers().get(i).getID()+1003;
+                    shop.getCustomers().get(i).setID(ID);
+                    String name=shop.getCustomers().get(i).getName();
+                    double pennies= shop.getCustomers().get(i).getWallet().getPennies();
+                    double nickels=shop.getCustomers().get(i).getWallet().getNickels();
+                    double dimes=shop.getCustomers().get(i).getWallet().getDimes();
+                    double quarters=shop.getCustomers().get(i).getWallet().getQuarters();
+                    double ones=shop.getCustomers().get(i).getWallet().getOnes();
+                    double fives=shop.getCustomers().get(i).getWallet().getFives();
+                    double tens=shop.getCustomers().get(i).getWallet().getTens();
+                    double twentys=shop.getCustomers().get(i).getWallet().getTwentys();
+                    double totalmoney=shop.getCustomers().get(i).getMoney();
+                    int happiness=shop.getCustomers().get(i).getHappiness();
+                    
+                    writer.format("%s", ID);
+                    writer.format(",");
+                    writer.format("%s",name);
+                    writer.format(",");
+                    writer.format("%s",totalmoney);
+                    writer.format(",");
+                    writer.format("%s",happiness);
+                    writer.format(",");
+                    writer.format("%s",(int)pennies);
+                    writer.format(",");
+                    writer.format("%s",(int)nickels);
+                    writer.format(",");
+                    writer.format("%s",(int)dimes);
+                    writer.format(",");
+                    writer.format("%s",(int)quarters);
+                    writer.format(",");
+                    writer.format("%s",(int)ones);
+                    writer.format(",");
+                    writer.format("%s",(int)fives);
+                    writer.format(",");
+                    writer.format("%s",(int)tens);
+                    writer.format(",");
+                    writer.format("%s\r\n",(int)twentys);
+                    
+                    writer.flush();
+                    
+                }
+                
+                
+                
+                
+                
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        else if(result==1){
+            loader.cancelSelection();
+        }
+        else
+        {
+            
+            System.out.println("Cancel Action");
+        }
+        
+        
+    }
     
     
+    public void workerUpdatefile(){
+        
+        this.setPreferredSize(new Dimension(800,600)); //this is creating the dialog for the loading of icecream
+        this.setSize(new Dimension(800,600));
+        this.setLocation(new Point(0,0));
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JTextField tf=new JTextField();
+        //tf.setInputVerifier(inputVerifier);
+        JFileChooser loader=new JFileChooser(".");
+        int result=0;
+        
+        result=loader.showDialog(this, "Save");
+        System.out.println(result);
+        
+        if (result==0)
+        {
+            System.out.println("Perform Action");
+            
+            File fp=loader.getSelectedFile();
+            
+            XWorker tempworker;
+            XCashier tempcashier;
+            XStocker tempstocker;
+            long ID=0;
+            String name="";
+            long customersserved=0;
+            long scoopsserved=0;
+            double moneytaken=0.00;
+            int workertype=0;
+            int staminapatience=0;
+            boolean onBreak= false;
+            try {
+                Formatter writer = new Formatter(fp);
+                String elements[];
+                int i;
+                
+                
+                for(i=0;i<shop.getWorkers().size();i++){
+                    ID=shop.getWorkers().get(i).getID()+1434;
+                    shop.getWorkers().get(i).setID(ID);
+                    if(shop.getWorkers().get(i).getWorkertype()==0){
+                        tempworker= shop.getWorkers().get(i);
+                        ID = tempworker.getID();
+                        name= tempworker.getName();
+                        customersserved= tempworker.getCustomersserved();
+                        scoopsserved = tempworker.getNumberscoops();
+                        moneytaken =tempworker.getMoneytaken();
+                        workertype= tempworker.getWorkertype();
+                        staminapatience=0;
+                        onBreak=false;
+                    }
+                    if(shop.getWorkers().get(i).getWorkertype()==1){
+                        tempstocker=(XStocker) shop.getWorkers().get(i);
+                        
+                        ID = tempstocker.getID();
+                        name= tempstocker.getName();
+                        customersserved= tempstocker.getCustomersserved();
+                        scoopsserved = tempstocker.getNumberscoops();
+                        moneytaken =tempstocker.getMoneytaken();
+                        workertype= tempstocker.getWorkertype();
+                        staminapatience = tempstocker.getStamina();
+                        onBreak = tempstocker.isOnBreak();
+                        
+                    }
+                    if(shop.getWorkers().get(i).getWorkertype()==2){
+                        tempcashier=(XCashier)shop.getWorkers().get(i);
+                        ID = tempcashier.getID();
+                        name= tempcashier.getName();
+                        customersserved= tempcashier.getCustomersserved();
+                        scoopsserved = tempcashier.getNumberscoops();
+                        moneytaken =tempcashier.getMoneytaken();
+                        workertype= tempcashier.getWorkertype();
+                        staminapatience = tempcashier.getPatience();
+                        onBreak = tempcashier.isOnBreak();
+                        
+                    }
+                switch(workertype) {
+                    
+                    case 0:
+                        writer.format("%s",ID);
+                        writer.format(",");
+                        writer.format("%s","Worker");
+                        writer.format(",");
+                        writer.format("%s",name);
+                        writer.format(",");
+                        writer.format("%s",customersserved);
+                        writer.format(",");
+                        writer.format("%s",scoopsserved);
+                        writer.format(",");
+                        writer.format("%s\r\n",moneytaken); 
+                        break;
+                    case 1:
+                        writer.format("%s",ID);
+                        writer.format(",");
+                        writer.format("%s","Stocker");
+                        writer.format(",");
+                        writer.format("%s",name);
+                        writer.format(",");
+                        writer.format("%s",customersserved);
+                        writer.format(",");
+                        writer.format("%s",scoopsserved);
+                        writer.format(",");
+                        writer.format("%s",moneytaken); 
+                        writer.format(",");
+                        writer.format("%s\r\n",staminapatience);
+                        break;
+                    case 2:
+                        writer.format("%s",ID);
+                        writer.format(",");
+                        writer.format("%s","Cashier");
+                        writer.format(",");
+                        writer.format("%s",name);
+                        writer.format(",");
+                        writer.format("%s",customersserved);
+                        writer.format(",");
+                        writer.format("%s",scoopsserved);
+                        writer.format(",");
+                        writer.format("%s",moneytaken); 
+                        writer.format(",");
+                        writer.format("%s\r\n",staminapatience);
+                        break;
+                  }
+               writer.flush(); 
+               }  
+                
+                
+                
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        else if(result==1){
+            loader.cancelSelection();
+        }
+        else 
+        {
+            
+            System.out.println("Cancel Action");
+        }
+        
+    }
     
-
-} 
+    
+}
     
 
 

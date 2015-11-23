@@ -128,7 +128,7 @@ public class Shop {
    {
        
        tempworker= new XWorker();
-       workerCount+=1376;
+       workerCount+=1000;
        tempworker.setID(workerCount);
        tempworker.setName(name);
        workers.add(tempworker);

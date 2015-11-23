@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import java.util.Arrays;
 import java.util.ArrayList;
 
 /**
@@ -52,9 +52,9 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     public void initComponents(ArrayList <XWorker> workerListz) {
-      int i;
-         
-      
+      int i,count=0;
+      String [] WorkerN= new String[workerListz.size()];
+     
    
      
       
@@ -62,21 +62,23 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
         {
             if(workerListz.get(i).getWorkertype()==2)
             {
-                CashierNames.add(workerListz.get(i).getName());
+              WorkerN[count]=workerListz.get(i).getWName();
+              count+=1;
+
+                
             }
         }
         
-        CashierN= new String[CashierNames.size()];
-        for(i=0;i<CashierNames.size();i++)
-        {
-            CashierN[i]=CashierNames.get(i);
-        }
+        CashierN= new String[count];
+        for(i=0;i<count;i++) CashierN[i]= WorkerN[i];
+        System.out.printf("I'm here %d\n",CashierN.length);
+        count=0;
          
         
          
          
          
-       jLabel1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
 
@@ -84,9 +86,11 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
         setLocation(new java.awt.Point(250, 200));
 
         jLabel1.setText("Cashiers:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(CashierN));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener(){
+         
+          jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(CashierN));
+       
+        
+         jComboBox1.addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
@@ -108,7 +112,7 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
                         .addGap(37, 37, 37)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(jButton1)))
@@ -125,7 +129,7 @@ public class ActivateCashierDialog extends javax.swing.JDialog {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
-
+   
         pack();
     }// </editor-fold>                        
 

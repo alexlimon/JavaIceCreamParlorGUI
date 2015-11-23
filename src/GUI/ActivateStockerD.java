@@ -53,7 +53,7 @@ public class ActivateStockerD extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     public void initComponents(ArrayList <XWorker> workerListz) {
       int i;
-         
+      boolean happened=false;   
       
    
      
@@ -73,7 +73,7 @@ public class ActivateStockerD extends javax.swing.JDialog {
         }
          
         
-         
+        
          
          
        jLabel1 = new javax.swing.JLabel();
@@ -82,10 +82,12 @@ public class ActivateStockerD extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(250, 200));
-
+         
         jLabel1.setText("Stockers:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(StockerN));
+       
+        
+        
         jComboBox1.addActionListener(new java.awt.event.ActionListener(){
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -108,7 +110,7 @@ public class ActivateStockerD extends javax.swing.JDialog {
                         .addGap(37, 37, 37)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(jButton1)))
