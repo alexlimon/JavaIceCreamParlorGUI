@@ -53,7 +53,6 @@ public class ActivateStockerD extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     public void initComponents(ArrayList <XWorker> workerListz) {
       int i;
-      boolean happened=false;   
       
    
      
@@ -85,7 +84,7 @@ public class ActivateStockerD extends javax.swing.JDialog {
          
         jLabel1.setText("Stockers:");
 
-       
+       jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(StockerN));
         
         
         jComboBox1.addActionListener(new java.awt.event.ActionListener(){
@@ -101,7 +100,9 @@ public class ActivateStockerD extends javax.swing.JDialog {
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().removeAll();
         getContentPane().setLayout(layout);
+        
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
