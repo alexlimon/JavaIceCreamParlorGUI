@@ -17,8 +17,8 @@ public class ServingPromptDialog extends javax.swing.JDialog {
     private boolean keepgoing=true;
     private BananaSplitDialog bananasplitdialog;
     private String[] icecreams;
-    private int[] bananatopping;
-    private int[] icecreamschosen;
+    private String[] bananatopping;
+    private String[] icecreamschosen;
     
     /**
      * Creates new form FlavorPromptDialog
@@ -176,8 +176,8 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
             case "Banana Split":
                 bananasplitdialog.setIceCreamz(icecreams);
                 bananasplitdialog.setVisible(true);
-                
-                
+                bananatopping = bananasplitdialog.getBsyrup();
+                icecreamschosen = bananasplitdialog.getBicecreams();
                 break;
                 
             case "Ice Cream Soda":
@@ -246,6 +246,14 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
 
     public String getServingtarget() {
         return servingtarget;
+    }
+
+    public String[] getBananatopping() {
+        return bananatopping;
+    }
+
+    public String[] getIcecreamschosen() {
+        return icecreamschosen;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

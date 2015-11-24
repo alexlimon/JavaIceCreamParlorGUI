@@ -301,11 +301,12 @@ public class MainFrame extends JFrame implements ActionListener
                updateCustomer.setVisible(true);
                break;
             case cmdTaskPlaceOrder:
-                
+                int i;
                 orderD.setArrayLists(shop.getWorkers(), shop.getCustomers());
                 orderD.setServingPromptDialog(servingpromptdialog);
                 servingpromptdialog.setIceCreamArray(shop.getIcecreamz());
                 orderD.setVisible(true);
+                for(i=0;i<shop.getIcecreamz().size();i++) 
                 //orderD.getWorkerChosen();
                 break;
             case cmdTaskPayOrder:
