@@ -135,6 +135,7 @@ public class MainFrame extends JFrame implements ActionListener
     OnBreakStockerDialog onBreakSDialog;
     OnBreakStockerErrorDialog onBreakSErr;
     OnBreakStockerMessageDialog onBreakSMess;
+    OnBreakCashierDialog onBreakCDialog;
     UpdatedCustomer updateCustomer;
     UpdateWorker updateWorker;
     UpdatedIceCream updatedIceCream;
@@ -170,7 +171,7 @@ public class MainFrame extends JFrame implements ActionListener
         onBreakSDialog=new OnBreakStockerDialog(this,true);
         onBreakSErr= new OnBreakStockerErrorDialog(this,true);
         onBreakSMess= new OnBreakStockerMessageDialog(this,true);
-        
+        onBreakCDialog=new OnBreakCashierDialog(this,true);
         
         updateCustomer = new UpdatedCustomer(this, true);
         updateWorker = new UpdateWorker(this, true);
@@ -324,7 +325,8 @@ public class MainFrame extends JFrame implements ActionListener
                 }
                 break;
             case cmdTaskOnBreakCashier:
-                //putLine("action:"+cmdTaskOnBreakCashier+"\n");
+                onBreakCDialog.initComponents(shop.getWorkers());
+                onBreakCDialog.setVisible(true);
                 break;
              case cmdTaskOnBreakStocker:
                 onBreakSDialog.initComponents(shop.getWorkers());
