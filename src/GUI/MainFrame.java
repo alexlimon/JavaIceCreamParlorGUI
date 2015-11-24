@@ -139,6 +139,9 @@ public class MainFrame extends JFrame implements ActionListener
     UpdatedCustomer updateCustomer;
     UpdateWorker updateWorker;
     UpdatedIceCream updatedIceCream;
+    
+    OrderDialog orderD;
+    ServingPromptDialog servingpromptdialog;
    
     AboutOtherDialog aboutOtherDialog;
     Formatter writer;
@@ -151,7 +154,9 @@ public class MainFrame extends JFrame implements ActionListener
         
         makeDocument();
         
-        
+        String orderworker;
+        String ordercustomer;
+       
         
         ICDialog = new LoadICDialog(this,true);
         WorkerDialog= new LWorkerDialog(this,true);
@@ -177,9 +182,12 @@ public class MainFrame extends JFrame implements ActionListener
         updateWorker = new UpdateWorker(this, true);
         updatedIceCream = new UpdatedIceCream(this, true);
 
+        orderD= new OrderDialog(this,true);
+        servingpromptdialog = new ServingPromptDialog(this,true);
+        
         dialogAbout=new DialogAbout(this,true);
         aboutOtherDialog= new AboutOtherDialog(this,true);
-
+       
         shop = new Shop();
         
         this.setSize(new Dimension(800,600));
@@ -293,7 +301,12 @@ public class MainFrame extends JFrame implements ActionListener
                updateCustomer.setVisible(true);
                break;
             case cmdTaskPlaceOrder:
-               // putLine("action:"+cmdTaskPlaceOrder+"\n");
+                
+                orderD.setArrayLists(shop.getWorkers(), shop.getCustomers());
+                orderD.setServingPromptDialog(servingpromptdialog);
+                servingpromptdialog.setIceCreamArray(shop.getIcecreamz());
+                orderD.setVisible(true);
+                //orderD.getWorkerChosen();
                 break;
             case cmdTaskPayOrder:
                 //putLine("action:"+cmdTaskPayOrder+"\n");

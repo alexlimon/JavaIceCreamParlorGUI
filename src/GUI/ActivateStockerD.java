@@ -19,9 +19,9 @@ public class ActivateStockerD extends javax.swing.JDialog {
     private String StockerChosen;
     private ArrayList <XWorker> workerList;
     private ArrayList <XStocker> stockerList;
-   private ArrayList <String> StockerNames;
-   private String StockerN[];
-   String names[];
+    private ArrayList <String> StockerNames;
+    private String StockerN[];
+    String names[];
     public ActivateStockerD(java.awt.Frame parent, boolean modal) {
         
         super(parent, modal);
