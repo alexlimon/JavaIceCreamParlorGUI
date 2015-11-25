@@ -315,6 +315,7 @@ public class MainFrame extends JFrame implements ActionListener
                 orderD.setArrayLists(shop.getWorkers(), shop.getCustomers());
                 orderD.setServingPromptDialog(servingpromptdialog);
                 servingpromptdialog.setIceCreamArray(shop.getIcecreamz());
+                servingpromptdialog.setShopeditor(shop);
                 orderD.setVisible(true);
                 for(i=0;i<shop.getIcecreamz().size();i++) 
                 //orderD.getWorkerChosen();
@@ -440,14 +441,13 @@ public void loadIceCream(){
                 int result=0;
                 
 		result=loader.showDialog(this, "Load Ice Cream");
-                System.out.println(result);
-             
+                
 		if (result==0)
 		{
-			System.out.println("Perform Action");
+			
 			
 			File fp=loader.getSelectedFile();
-			System.out.println(fp.getName());
+			
                         String line;
                         String elements[];
                         long ID;
@@ -502,7 +502,7 @@ public void loadWorker(){
     JFileChooser loader=new JFileChooser(".");
                 int result=0;
 		result=loader.showDialog(this, "Load Workers");
-               // System.out.println(result);
+               
              
 		if (result==0)
 		{
@@ -601,11 +601,11 @@ public void loadCustomer(){
     JFileChooser loader=new JFileChooser(".");
                 int result=0;
 		result=loader.showDialog(this, "Load Customers");
-                System.out.println(result);
+                
              
 		if (result==0)
 		{
-                    System.out.println("Perform Action");
+                    
 			
 	            File fp=loader.getSelectedFile();
                     String line;
@@ -687,11 +687,11 @@ public void loadCustomer(){
         int result=0;
         
         result=loader.showDialog(this, "Save");
-        System.out.println(result);
+        
         
         if (result==0)
         {
-            System.out.println("Perform Action");
+            
             
             File fp=loader.getSelectedFile();
             
@@ -760,11 +760,11 @@ public void loadCustomer(){
         int result=0;
         
         result=loader.showDialog(this, "Save");
-        System.out.println(result);
+       
         
         if (result==0)
         {
-            System.out.println("Perform Action");
+            
             
             File fp=loader.getSelectedFile();
             
@@ -856,11 +856,11 @@ public void loadCustomer(){
         int result=0;
         
         result=loader.showDialog(this, "Save");
-        System.out.println(result);
+        
         
         if (result==0)
         {
-            System.out.println("Perform Action");
+            
             
             File fp=loader.getSelectedFile();
             

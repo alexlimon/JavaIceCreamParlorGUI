@@ -24,8 +24,12 @@ public class OrderDialog extends javax.swing.JDialog {
     protected String[] customerNames;
     private String customerChosen;
     ServingPromptDialog servingPDialog;
-   public String getWorkerChosen() {
-        return workerChosen;
+    
+
+   
+    
+    public String getWorkerChosen() {
+    return workerChosen;
     }
      public void setServingPromptDialog(ServingPromptDialog outsideservingPDialog){
          this.servingPDialog= outsideservingPDialog;
@@ -181,7 +185,12 @@ public class OrderDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         dispose();
+        servingPDialog.setCustomerposition(getCustomerposition(customerChosen));
+        servingPDialog.setWorkerposition(getWorkerposition(workerChosen));
+        
+        dispose();
+         
+         
          servingPDialog.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -228,6 +237,9 @@ public class OrderDialog extends javax.swing.JDialog {
         });
     }
 
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -237,4 +249,32 @@ public class OrderDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
+
+
+
+
+public int getWorkerposition(String workerChosen){
+    int i,workerposition=0;
+    
+    for(i=0;i<workerNames.length;i++) if(workerNames[i].equals(workerChosen)) workerposition=i;
+    return workerposition;     
+        
+   }
+    
+    
+public int getCustomerposition(String customerChosen){
+    int i,customerposition=0;
+    
+    for(i=0;i<customerNames.length;i++) if(customerNames[i].equals(customerChosen)) customerposition=i;
+    return customerposition;     
+        
+   }    
+
+
+
 }
+
+
+
+

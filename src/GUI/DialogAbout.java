@@ -51,7 +51,7 @@ public class DialogAbout extends javax.swing.JDialog {
         jLabel4.setText("ID:");
 
         jLabel5.setForeground(new java.awt.Color(153, 0, 51));
-        jLabel5.setText("Mistere Abete");
+        jLabel5.setText("Mistere Abate");
 
         jLabel6.setForeground(new java.awt.Color(153, 0, 51));
         jLabel6.setText("1001085587");
