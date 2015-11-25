@@ -12,6 +12,7 @@ package GUI;
  */
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JPanel;
@@ -36,8 +37,8 @@ public class PieChartHappiness extends JPanel{
     {
         int x=100;
         int y=100;
-        int width=400;
-        int height=400;
+        int width=300;
+        int height=300;
         int  startAngle=0;
         int  endAngle;
         
@@ -53,21 +54,46 @@ public class PieChartHappiness extends JPanel{
             total+=customersHapp[i];
             
         }
-        
+         int z=500,v=100;
         for(i=0;i<customersHapp.length;i++)
         {
+                Font myFont = new Font("Serif", Font.BOLD, 16);
                 if(i==customersHapp.length-1)
                 {
                     endAngle=360-startAngle;
+                    double temp= customersHapp[i];
+                     for(int j=0;j<customerz.size();j++)
+                     {
+                        if(temp==customerz.get(j).getHappiness())
+                        {
+                           
+                            g.setColor(colorArray[i]);
+                            g.setFont(myFont);
+                            g.drawString(customerz.get(j).getName(), z, v);
+                           
+                        }
+                     }
                 }
                 else{
                    endAngle=(int) ((customersHapp[i]/total)*360); 
+                   double temp= customersHapp[i];
+                     for(int j=0;j<customerz.size();j++)
+                     {
+                        if(temp==customerz.get(j).getHappiness())
+                        {
+                           
+                            g.setColor(colorArray[i]);
+                            g.setFont(myFont);
+                            g.drawString(customerz.get(j).getName(), z, v);
+                           
+                        }
+                     }
                 }
-                g.setColor(colorArray[i]);
+                
                 
                 g.fillArc(x, y, width, height, startAngle, endAngle);
                 startAngle=endAngle+startAngle;
-            
+                v+=15;
             
                
         }
