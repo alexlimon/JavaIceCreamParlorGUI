@@ -23,6 +23,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import java.awt.BorderLayout;
 
 /**
  *
@@ -145,6 +146,10 @@ public class MainFrame extends JFrame implements ActionListener
    
     AboutOtherDialog aboutOtherDialog;
     Formatter writer;
+    
+    PieChartMoney pc;
+    PieChartHappiness pcH;
+    
     public MainFrame()
     {
         this.setTitle("Honey Badger Ice Cream Parlor");
@@ -189,6 +194,11 @@ public class MainFrame extends JFrame implements ActionListener
         aboutOtherDialog= new AboutOtherDialog(this,true);
        
         shop = new Shop();
+        
+        BorderLayout gl=new BorderLayout();
+        this.setLayout(gl);
+        pc=new PieChartMoney();
+        pcH=new PieChartHappiness();
         
         this.setSize(new Dimension(800,600));
         this.setVisible(true);
@@ -356,10 +366,13 @@ public class MainFrame extends JFrame implements ActionListener
                 }
                 break;
             case cmdChartPieHappiness:
-                //putLine("action:"+cmdChartPieHappiness+"\n");
+               pcH.setCustomersHappiness(shop.getCustomers());
+               doPieChartHappiness();
                 break;
-            case cmdChartPieMoney:
-                //putLine("action:"+cmdChartPieMoney+"\n");
+            case cmdChartPieMoney:             
+               pc.setWorkersMoney(shop.getWorkers());
+               doPieChartMoney();
+               
                 break;
             case cmdChartBarHappiness:
                 //putLine("action:"+cmdChartBarHappiness+"\n");
@@ -396,6 +409,22 @@ public class MainFrame extends JFrame implements ActionListener
    public void setShop(Shop shop) {
         this.shop=shop;
     }
+   
+   public void doPieChartMoney(){
+       this.getContentPane().removeAll();
+       this.getContentPane().add(pc,BorderLayout.CENTER);
+       
+       this.repaint();
+       this.validate();
+   }
+   
+   public void doPieChartHappiness(){
+       this.getContentPane().removeAll();
+       this.getContentPane().add(pcH,BorderLayout.CENTER);
+       
+       this.repaint();
+       this.validate();
+   }
 
 
 public void loadIceCream(){
