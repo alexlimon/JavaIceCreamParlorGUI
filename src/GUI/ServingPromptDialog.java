@@ -5,7 +5,10 @@
  */
 package GUI;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,21 +20,36 @@ public class ServingPromptDialog extends javax.swing.JDialog {
     private boolean keepgoing=true;
     private BananaSplitDialog bananasplitdialog;
     private String[] icecreams;
-    private String[] bananatopping;
-    private String[] icecreamschosen;
-    
+    private int[] toppingpositions;
+    private int[] icecreampositions;
+    private Shop shopeditor;
+    boolean firstserving= true;
+    private int workerposition;
+    private int customerposition;
     /**
      * Creates new form FlavorPromptDialog
      */
     public ServingPromptDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
+          
         bananasplitdialog= new BananaSplitDialog(parent,true);
         
         
         
         
         initComponents();
+    }
+
+    public void setWorkerposition(int workerposition) {
+        this.workerposition = workerposition;
+    }
+
+    public void setCustomerposition(int customerposition) {
+        this.customerposition = customerposition;
+    }
+
+    public void setShopeditor(Shop shopeditor) {
+        this.shopeditor = shopeditor;
     }
 public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
     
@@ -103,30 +121,32 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jButton1)
-                .addGap(21, 21, 21)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jButton1)
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jLabel1)))
                 .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(9, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -147,7 +167,7 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
+       dispose();
 
 
 
@@ -176,9 +196,26 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
             case "Banana Split":
                 bananasplitdialog.setIceCreamz(icecreams);
                 bananasplitdialog.setVisible(true);
-                bananatopping = bananasplitdialog.getBsyrup();
-                icecreamschosen = bananasplitdialog.getBicecreams();
-                break;
+                toppingpositions= bananatoppingCreator(bananasplitdialog.getBsyrup());
+                icecreampositions= icecreampositionCreator(bananasplitdialog.getBicecreams());
+                if(firstserving){
+               
+                        try {
+                               shopeditor.newtransaction(customerposition, workerposition, icecreampositions, 0, 3, false, toppingpositions);
+                            } catch (FileNotFoundException ex) {
+                                    Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (NotEnoughIceCreamException ex) {
+                                    Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                }
+                else
+                      try {
+                        shopeditor.addservingct(icecreampositions,3,0,false,toppingpositions);
+                            } 
+                      catch (FileNotFoundException ex) {
+                         Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                           }
+               break;
                 
             case "Ice Cream Soda":
                 
@@ -248,13 +285,9 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
         return servingtarget;
     }
 
-    public String[] getBananatopping() {
-        return bananatopping;
-    }
+   
 
-    public String[] getIcecreamschosen() {
-        return icecreamschosen;
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -264,4 +297,70 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-}
+
+public int[] icecreampositionCreator(String[] icecreamschosen){
+    int i,currenticecream=0;
+    int [] icecreampositions= new int[icecreamschosen.length];
+    for(i=0;i<shopeditor.getIcecreamz().size(); i++) {
+        if(icecreamschosen[currenticecream].equals(shopeditor.getIcecreamz().get(i))){
+            icecreampositions[currenticecream]= i;
+            currenticecream +=1; 
+            }
+        } 
+        return icecreampositions;
+ }
+
+public int[] bananatoppingCreator(String[] bananatoppings){
+    int i;
+    int toppingpositions[]= new int[bananatoppings.length];
+    for(i=0;i<bananatoppings.length;i++){
+        switch(bananatoppings[i]){
+            case("Strawberry"):
+                toppingpositions[i]=0;
+                break;
+            case("Chocolate Syrup"):
+                toppingpositions[i]=1;
+                break;
+            case("Marshmellow cream"):
+                toppingpositions[i]=2;
+                break;
+            case("Pineapple"):
+                toppingpositions[i]=3;
+                break;
+            case("Ketchup"):
+                toppingpositions[i]=4;
+                break;
+            case("Mustard"):
+                toppingpositions[i]=5;
+                break;
+            case("Pickle Relish"):
+                toppingpositions[i]=6;
+                break;
+        }
+    }
+    
+    return toppingpositions;
+            
+  }
+        
+        
+ }
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+

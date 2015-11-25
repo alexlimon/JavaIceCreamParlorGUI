@@ -305,6 +305,7 @@ public class MainFrame extends JFrame implements ActionListener
                 orderD.setArrayLists(shop.getWorkers(), shop.getCustomers());
                 orderD.setServingPromptDialog(servingpromptdialog);
                 servingpromptdialog.setIceCreamArray(shop.getIcecreamz());
+                servingpromptdialog.setShopeditor(shop);
                 orderD.setVisible(true);
                 for(i=0;i<shop.getIcecreamz().size();i++) 
                 //orderD.getWorkerChosen();
