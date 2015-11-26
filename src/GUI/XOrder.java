@@ -19,6 +19,8 @@ public class XOrder {
     private int ordernumber;
     private XWorker orderWorker;
     private XCustomer orderCustomer;
+
+   
     private ArrayList <XServing> servings;
     private XServing tempserving;
     private sIceCreamCone tempcone;
@@ -29,7 +31,7 @@ public class XOrder {
     
     
     private double totalCost=0.00;
-
+    private double oneservingcost=0.00;
     public int getOrdernumber() {
         return ordernumber;
     }
@@ -66,12 +68,13 @@ public class XOrder {
         
         
 }
-
+ public void setOneservingcost(double oneservingcost) {
+        this.oneservingcost = oneservingcost;
+    }
   public void createServing(String[]icecreamflavors,int servingtype,int type,boolean nuts,int bananatopping[]) throws FileNotFoundException{
       
-      
-      
-      
+      totalCost+=oneservingcost;
+      System.out.printf("Updated Order Price: %f\n",totalCost);
       
       
       switch(servingtype)
@@ -80,59 +83,41 @@ public class XOrder {
           case 1:
             tempcone = new sIceCreamCone();
             tempcone.setConetype(type);
+            tempcone.setOverallprice(oneservingcost);
             tempcone.setScoops(icecreamflavors);
-            tempcone.calcprice();
-            totalCost= totalCost+tempcone.getOverallprice();
             servings.add(tempcone);
             break;
           case 2:
             tempsundae = new sIceCreamSundae();
+            tempsundae.setOverallprice(oneservingcost);
             tempsundae.setScoops(icecreamflavors);
             tempsundae.setTopping(type);
             tempsundae.setNuts(nuts);
-            tempsundae.calcprice();
-            totalCost= totalCost+tempsundae.getOverallprice();
             servings.add(tempsundae);
             break;
           case 3:
             tempsplit = new sBananaSplit();
+            tempsplit.setOverallprice(oneservingcost);
             tempsplit.setScoops(icecreamflavors);
             tempsplit.setToppings(bananatopping);
             tempsplit.setNuts(nuts);
-            tempsplit.calcprice();
-            totalCost= totalCost+tempsplit.getOverallprice();
-            servings.add(tempsplit);
+           servings.add(tempsplit);
             break;
           case 4:
             tempsoda = new sIceCreamSoda();
-            tempsoda.calcprice();
-            totalCost= totalCost+(tempsoda.getOverallprice()*2.00);
-           servings.add(tempsoda);
+            tempsoda.setOverallprice(oneservingcost);
+            servings.add(tempsoda);
             break;
           case 5:
             tempfloat = new sRootBeerFloat();
-            tempfloat.calcprice();
-            totalCost= totalCost+tempfloat.getOverallprice();
+            tempfloat.setOverallprice(oneservingcost);
             servings.add(tempfloat);
             break;
       }
            
-            
+  }       
           
          
-     
-      
-              
-              
-      
-      
-     
-      
-      
-      
-      
-   }   
-
     public boolean isPaid() {
         return paid;
     }

@@ -39,42 +39,7 @@ public sIceCreamSundae(){
 
 
 
-public void calcprice() throws FileNotFoundException
-{
-    File icfile;
-    icfile = new File("IceCreamFlavors.txt");
-    String line;
-    String elements[]=null;
-    double price;
-    String flavor="";
-    String description;
-    int scoopsleft;
-    int i=0,j=0;
-    String flavorchecka="";
-    
-    for(i=0;i<scoops.length;i++)
-    {
-        
-        flavor=scoops[i];
-        
-        Scanner lineinput= new Scanner(icfile);
-        while(lineinput.hasNextLine()){
-            line=lineinput.nextLine();
-            elements= line.split(",");
-            flavorchecka=elements[1];
-            price=Double.parseDouble(elements[2]);
-            
-            if(flavorchecka.equals(flavor))
-            {
-                this.overallprice= price+this.overallprice;
-                
-                
-            }
-            
-  }
-    }           
-        
-}   
+
     public String[] getScoops() {
         return scoops;
     }
