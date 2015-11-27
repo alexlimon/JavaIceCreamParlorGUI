@@ -260,7 +260,7 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                 if(firstserving){
                
                         try {
-                               shopeditor.newtransaction(customerposition, workerposition, icecreampositions, 0, 3, false, toppingpositions);
+                               shopeditor.newtransaction(customerposition, workerposition, icecreampositions, 3, 0, false, toppingpositions);
                             } catch (FileNotFoundException ex) {
                                     Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (NotEnoughIceCreamException ex) {
@@ -413,7 +413,7 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
 public int[] icecreampositionCreator(String[] icecreamschosen){
     int i,currenticecream=0;
     int [] icecreampositions= new int[icecreamschosen.length];
-    for(i=0;i<icecreamschosen.length;i++) System.out.println(icecreamschosen[i]);
+   
     for(i=0;i<shopeditor.getIcecreamz().size() && currenticecream<icecreamschosen.length; i++) {
        
         if(icecreamschosen[currenticecream].equals(shopeditor.getIcecreamz().get(i).getFlavor())){

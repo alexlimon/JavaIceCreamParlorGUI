@@ -83,6 +83,12 @@ public class IceCreamSodaDialog extends javax.swing.JDialog {
         });
 
         jButton3.setText("Cancel");
+        jButton3.setLocation(new java.awt.Point(250, 200));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,6 +157,10 @@ public class IceCreamSodaDialog extends javax.swing.JDialog {
    icecreamschosen[1]= jComboBox2.getSelectedItem().toString();
      
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    dispose();    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

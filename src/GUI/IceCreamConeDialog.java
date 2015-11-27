@@ -51,7 +51,6 @@ public class IceCreamConeDialog extends javax.swing.JDialog {
         jComboBox4 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(625, 214));
 
         jButton2.setText("Apply");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +60,12 @@ public class IceCreamConeDialog extends javax.swing.JDialog {
         });
 
         jButton3.setText("Cancel");
+        jButton3.setLocation(new java.awt.Point(250, 200));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         jLabel1.setText("Scoops:");
@@ -193,6 +198,10 @@ public class IceCreamConeDialog extends javax.swing.JDialog {
         
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public String[] getIcecreamchosen() {
         return icecreamchosen;

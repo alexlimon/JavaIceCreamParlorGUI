@@ -43,7 +43,7 @@ public class PieChartMoney extends JPanel {
         int height=300;
         int  startAngle=0;
         int  endAngle;
-        
+       
         
         
         Color[] colorArray=new Color[]{Color.RED,Color.BLUE,Color.GREEN,Color.BLACK,Color.YELLOW,Color.PINK,Color.CYAN,Color.DARK_GRAY,Color.MAGENTA,Color.ORANGE};
@@ -63,20 +63,21 @@ public class PieChartMoney extends JPanel {
         for(i=0;i<workersMoney.length;i++)
         {
                 
-                 Font myFont = new Font("Serif", Font.BOLD, 16);
+                 Font myFont = new Font("Serif", Font.PLAIN, 16);
                 if(i==workersMoney.length-1)
                 {
                     endAngle=360-startAngle;
                      double temp= workersMoney[i];
                      for(int j=0;j<workerz.size();j++)
                      {
-                        if(temp==workerz.get(j).getMoneytaken())
+                      
+                         if(temp==workerz.get(j).getMoneytaken())
                         {
                            
                             g.setColor(colorArray[i]);
                             g.setFont(myFont);
                             g.drawString(workerz.get(j).getName(), z, v);
-                           
+                            
                         }
                      }
                 }
@@ -85,14 +86,14 @@ public class PieChartMoney extends JPanel {
                    double temp= workersMoney[i];
                    for(int j=0;j<workerz.size();j++)
                     {
-                        if(temp==workerz.get(j).getMoneytaken())
+                       if(temp==workerz.get(j).getMoneytaken())
                         {
                           
                             g.setColor(colorArray[i]);
                             g.setFont(myFont);
                             g.drawString(workerz.get(j).getName(), z, v);
-                           
-                        }
+                            
+                            }
                     }
                 }
                
