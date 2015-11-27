@@ -114,12 +114,13 @@ public class PaymentDecisionDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int i;
+        int i,orderindexPicked;
+        String tempLine[];
         String orderpicked=jComboBox1.getSelectedItem().toString();
-        for(i=0;i<orders.length;i++){
-            if(orderpicked.equals(orders[i])) shopeditor.payorderscredit(i);
-            
-        }
+        tempLine= orderpicked.split(" ");
+       
+        orderindexPicked= (Integer.parseInt(tempLine[2]))-1;
+        shopeditor.payorderscredit(orderindexPicked);
         getContentPane().removeAll();
         dispose();
         

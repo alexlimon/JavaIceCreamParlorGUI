@@ -78,7 +78,7 @@ public class XOrder {
       totalCost+=oneservingcost;
     
       totalicecreams+=icecreamflavors.length;
-      System.out.println(totalicecreams);
+      
       switch(servingtype)
       {
           

@@ -998,14 +998,15 @@ public void loadCustomer(){
     
     
 public void payOrder(){
-    int i;
+    int i,ordernonpayed=0;
     String orders[]= new String[shop.getOrders().size()];
     
     for(i=0;i<shop.getOrders().size();i++){
-        
-      orders[i]= "Order Number:"+" "+Integer.toString(i+1) +" "+"Price:"+" "+ Double.toString(shop.getOrders().get(i).getTotalCost());
-        
-    }
+      if(!shop.getOrders().get(i).isPaid()){
+      orders[ordernonpayed]= "Order Number:"+" "+Integer.toString(i+1) +" "+"Price:"+" "+ Double.toString(shop.getOrders().get(i).getTotalCost());
+      ordernonpayed+=1;
+      }
+     }
           
     paymentdecisiondialog.setOrders(orders);
     paymentdecisiondialog.setShopeditor(shop);
