@@ -9,27 +9,29 @@ package GUI;
  *
  * @author Alex
  */
-public class IceCreamConeDialog extends javax.swing.JDialog {
+public class IceCreamSodaDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form IceCreamConeDialog
-     */
-    
-    String icecreamchosen[];
-    int conetype;
-    String icecreamnames[];
-
-    public void setIcecreamnames(String[] icecreamnames) {
-        this.icecreamnames = icecreamnames;
-         initComponents();
-    }
-    public IceCreamConeDialog(java.awt.Frame parent, boolean modal) {
+  String icecreams[];
+  String icecreamschosen[];
+          
+    public IceCreamSodaDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        icecreamchosen = new String[3];
+        icecreamschosen= new String[2];
         
-      
         
     }
+
+    public void setIcecreams(String[] icecreams) {
+        this.icecreams = icecreams;
+        initComponents();
+    }
+
+    public String[] getIcecreamschosen() {
+        return icecreamschosen;
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,17 +42,38 @@ public class IceCreamConeDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
+        jLabel1.setText("Scoops:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(icecreams));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(icecreams));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Next");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Apply");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -67,61 +90,28 @@ public class IceCreamConeDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
-        jLabel1.setText("Scoops:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(icecreamnames));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(icecreamnames));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(icecreamnames));
-
-        jButton1.setText("Next");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
-        jLabel2.setText("Type of Cone:");
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cake Cone", "Sugar Cone", "Waffle Cone" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(31, 31, 31)
                         .addComponent(jButton2)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton3)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(jButton3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox1, 0, 181, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(226, 226, 226))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,18 +121,13 @@ public class IceCreamConeDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
-                .addGap(19, 19, 19))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -157,59 +142,25 @@ public class IceCreamConeDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        icecreamchosen[0]= jComboBox1.getSelectedItem().toString();
-        icecreamchosen[1]= jComboBox2.getSelectedItem().toString();
-        icecreamchosen[2]= jComboBox3.getSelectedItem().toString();
 
-        switch(jComboBox4.getSelectedItem().toString()){
-            case "Cake Cone":
-                conetype=1;
-                break;
-            case "Sugar Cone":
-                conetype=2;
-                break;
-           case "Waffle Cone":
-                conetype=3;
-                break;
-          
-        
-        }
+        icecreamschosen[0]= jComboBox1.getSelectedItem().toString();
+        icecreamschosen[1]= jComboBox2.getSelectedItem().toString();
+     
+
         dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       icecreamchosen[0]= jComboBox1.getSelectedItem().toString();
-        icecreamchosen[1]= jComboBox2.getSelectedItem().toString();
-        icecreamchosen[2]= jComboBox3.getSelectedItem().toString();
-
-        switch(jComboBox4.getSelectedItem().toString()){
-            case "Cake Cone":
-                conetype=1;
-                break;
-            case "Sugar Cone":
-                conetype=2;
-                break;
-           case "Waffle Cone":
-                conetype=3;
-                break;
-          
-        
-        }
+  icecreamschosen[0]= jComboBox1.getSelectedItem().toString();
+   icecreamschosen[1]= jComboBox2.getSelectedItem().toString();
+     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-dispose();        // TODO add your handling code here:
+    dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    public String[] getIcecreamchosen() {
-        return icecreamchosen;
-    }
-
-    public int getConetype() {
-        return conetype;
-    }
 
     /**
      * @param args the command line arguments
@@ -228,20 +179,20 @@ dispose();        // TODO add your handling code here:
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IceCreamConeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IceCreamSodaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IceCreamConeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IceCreamSodaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IceCreamConeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IceCreamSodaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IceCreamConeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IceCreamSodaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                IceCreamConeDialog dialog = new IceCreamConeDialog(new javax.swing.JFrame(), true);
+                IceCreamSodaDialog dialog = new IceCreamSodaDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -259,9 +210,6 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

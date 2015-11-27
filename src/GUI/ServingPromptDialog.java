@@ -21,6 +21,8 @@ public class ServingPromptDialog extends javax.swing.JDialog {
     private BananaSplitDialog bananasplitdialog;
     private IceCreamConeDialog icecreamconedialog;
     private IceCreamSundaeDialog icecreamsundaedialog;
+    private IceCreamSodaDialog icecreamsodadialog;
+    
     boolean nuts=false;
     private String[] icecreams;
     private int[] toppingpositions;
@@ -40,7 +42,7 @@ public class ServingPromptDialog extends javax.swing.JDialog {
         bananasplitdialog= new BananaSplitDialog(parent,true);
         icecreamconedialog = new IceCreamConeDialog(parent,true);
         icecreamsundaedialog = new IceCreamSundaeDialog(parent,true);
-        
+        icecreamsodadialog= new IceCreamSodaDialog(parent,true);
         
         initComponents();
     }
@@ -172,7 +174,8 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       dispose();
+       firstserving=true;
+        dispose();
 
 
 
@@ -236,7 +239,7 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
           } catch (NotEnoughIceCreamException ex) {
               Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
           }
-                    
+                  firstserving=false;  
                 }
                 
                 else{
@@ -257,7 +260,7 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                 if(firstserving){
                
                         try {
-                               shopeditor.newtransaction(customerposition, workerposition, icecreampositions, 0, 3, false, toppingpositions);
+                               shopeditor.newtransaction(customerposition, workerposition, icecreampositions, 3, 0, false, toppingpositions);
                             } catch (FileNotFoundException ex) {
                                     Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (NotEnoughIceCreamException ex) {
@@ -275,30 +278,60 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                break;
                 
             case "Ice Cream Soda":
+                icecreamsodadialog.setIcecreams(icecreams);
+                icecreamsodadialog.setVisible(true);
+                icecreampositions = icecreampositionCreator(icecreamsodadialog.getIcecreamschosen());
+                if(firstserving){
+                        try {
+                            shopeditor.newtransaction(customerposition, workerposition, icecreampositions, 4, 0, false, null);
+                            } 
+                        catch (FileNotFoundException ex) {
+                            Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                            } 
+                        catch (NotEnoughIceCreamException ex) {
+                        Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+//                        firstserving=false;
+                }
+                else{
+                    
+                    
+                    try {
+                        shopeditor.addservingct(icecreampositions, 4, 0, false, null);
+                         } 
+                    catch (FileNotFoundException ex) {
+                        Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                }
+                    
+                  
+                
                 
                 break;
                 
             case "Root Beer Float":
                 if(firstserving)
                 {
-            try {
-                shopeditor.newtransaction(customerposition,workerposition,null,5,0,false,null);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NotEnoughIceCreamException ex) {
-                Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    try {
+                        shopeditor.newtransaction(customerposition,workerposition,null,5,0,false,null);
+                        } 
+                    catch (FileNotFoundException ex) {
+                         Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                            } 
+                    catch (NotEnoughIceCreamException ex) {
+                           Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                     
-                 firstserving=false;   
-                }
+                        firstserving=false;   
+                         }
                 else{
                     
-                try {
-                        shopeditor.addservingct(null,5,0, false, null);
-                       } 
-              catch (FileNotFoundException ex) {
-                Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                         try {
+                                shopeditor.addservingct(null,5,0, false, null);
+                             } 
+                            catch (FileNotFoundException ex) {
+                        Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                 
           }
                  
@@ -380,7 +413,7 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
 public int[] icecreampositionCreator(String[] icecreamschosen){
     int i,currenticecream=0;
     int [] icecreampositions= new int[icecreamschosen.length];
-    for(i=0;i<icecreamschosen.length;i++) System.out.println(icecreamschosen[i]);
+   
     for(i=0;i<shopeditor.getIcecreamz().size() && currenticecream<icecreamschosen.length; i++) {
        
         if(icecreamschosen[currenticecream].equals(shopeditor.getIcecreamz().get(i).getFlavor())){

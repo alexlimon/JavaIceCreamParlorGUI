@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  *
-Alex Limon Naranjo
+ Alex Limon Naranjo
  1000818599
  09/14/2015
  CSE 1325-003
@@ -32,7 +32,7 @@ public class Shop {
     private XStocker activestocker=null;
     private XCashier activecashier;
     private String[] toppings;
-    
+    private double tempPriceofServing;
     
   public Shop(){
     icecreamz= new ArrayList<>();
@@ -40,6 +40,7 @@ public class Shop {
     workers= new ArrayList<>();
     orders= new ArrayList<>();
     register = new XRegister();
+  
     String[] toppings={"Strawberry","Chocolate Syrup","Marshmellow Cream","Pineapple","Ketchup","Mustard","Pickle Relish","Soda","Banana"};
             
     
@@ -128,7 +129,7 @@ public class Shop {
    {
        
        tempworker= new XWorker();
-       workerCount+=1000;
+       workerCount+=1;
        tempworker.setID(workerCount);
        tempworker.setName(name);
        workers.add(tempworker);
@@ -161,7 +162,10 @@ public class Shop {
    {
        temporder = new XOrder();
        temporder.setPeople(ordercustomer, orderworker);
+         
+       temporder.setOneservingcost(tempPriceofServing);
        temporder.createServing(icecreamflavors,servingtype,type,nuts,bananatopping);
+       
        orders.add(temporder);
       
        
@@ -173,12 +177,18 @@ public class Shop {
        XCashier onbreakcashier; //lets increase some staminas
        XStocker onbreakstocker;
        String[] icecreamflavors;
+       tempPriceofServing=0;
+       
+       
+       
+       
+       
        
        if(icecreampositions==null){
            
            int[] rootbeer={1};
            icecreampositions=rootbeer;
-           
+           tempPriceofServing= 1.25;
        }
        
        
@@ -188,16 +198,41 @@ public class Shop {
        for(i=0;i<icecreampositions.length;i++){
            
            icecreamflavors[i]= icecreamz.get(icecreampositions[i]).getFlavor();
+           
+           switch(servingtype){
+               case 1:
+                   tempPriceofServing+=icecreamz.get(icecreampositions[i]).getPrice();
+                    
+                   break;
+               case 2: 
+                   tempPriceofServing+=icecreamz.get(icecreampositions[i]).getPrice();
+                   
+                   break;
+               case 3:
+                   tempPriceofServing+=icecreamz.get(icecreampositions[i]).getPrice();
+                   
+                   break;
+               case 4:
+                   tempPriceofServing+=icecreamz.get(icecreampositions[i]).getPrice()+.05;
+                    
+                   break;
+                   
+          
+         
+       }
+          
            if(icecreamz.get(icecreampositions[i]).getScoopsleft()<1){
-           throw new NotEnoughIceCreamException();
+                
+               throw new NotEnoughIceCreamException();
            }
            }
        
        
-       
-       
+      if(servingtype==2) tempPriceofServing+=1.00; //these take care of the extra prices of banana split and icecreamsundae
+      if(servingtype==3) tempPriceofServing+=2.00;
        createOrder(customers.get(customerposition),workers.get(workerposition),icecreamflavors,servingtype,type,nuts,bananatopping);// use the createorder for this
        currenttransaction= orders.size()-1;
+       
        workers.get(workerposition).setCustomerserved(1+workers.get(workerposition).getCustomerserved());//this is the counter for customers served
        workers.get(workerposition).setNumberscoops(1+workers.get(workerposition).getNumberscoops());//counter for scoops
        for(i=0;i<icecreampositions.length;i++){
@@ -227,27 +262,50 @@ public class Shop {
            
        
        
+   
+   
+   
+   
+   
+   
    }
    
    
   public void addservingct(int[] icecreampositions, int servingtype,int conetype,boolean nuts, int[] bananatopping) throws FileNotFoundException {
       
-      int i; 
+     int i; 
+     tempPriceofServing=0;
     if(icecreampositions==null){
            
            int[] rootbeer={1};
            icecreampositions=rootbeer;
-           
+           tempPriceofServing=1.25;
        }
        String[] icecreamflavors= new String[icecreampositions.length+1];
        for(i=0;i<icecreampositions.length;i++){
            
            icecreamflavors[i]= icecreamz.get(icecreampositions[i]).getFlavor();
            
-         }
+           switch(servingtype){
+               case 1:
+                   tempPriceofServing+=icecreamz.get(icecreampositions[i]).getPrice();
+                   break;
+               case 2: 
+                    tempPriceofServing+=icecreamz.get(icecreampositions[i]).getPrice()+1.00;
+                   break;
+               case 3:
+                   tempPriceofServing+=icecreamz.get(icecreampositions[i]).getPrice()+2.00;
+                   break;
+               case 4:
+                   tempPriceofServing+=icecreamz.get(icecreampositions[i]).getPrice()+.05;
+                   break;
+                   
+                
+         
+       }
+       }
       
-      
-      
+      orders.get(currenttransaction).setOneservingcost(tempPriceofServing);
       orders.get(currenttransaction).createServing(icecreamflavors, servingtype,conetype,nuts,bananatopping);//creates a new serving in the same order
       orders.get(currenttransaction).getOrderWorker().setNumberscoops(1+orders.get(currenttransaction).getOrderWorker().getNumberscoops());//increments the number of scoops the customer has taken
        for(i=0;i<icecreampositions.length;i++){
@@ -350,8 +408,9 @@ public class Shop {
          orders.get(orderposition).setPaid(true);
          register.setTillmoney(register.seeTill()+orders.get(orderposition).getTotalCost());
          orders.get(orderposition).getOrderWorker().setMoneytaken(orders.get(orderposition).getTotalCost()+orders.get(orderposition).getOrderWorker().getMoneytaken());
-     
-            }
+         orders.get(orderposition).getOrderCustomer().setHappiness(orders.get(orderposition).getOrderCustomer().getHappiness()+orders.get(orderposition).getTotalicecreams());
+            
+     }
     
       
       

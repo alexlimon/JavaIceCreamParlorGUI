@@ -68,6 +68,12 @@ public class IceCreamSundaeDialog extends javax.swing.JDialog {
         });
 
         jButton3.setText("Cancel");
+        jButton3.setLocation(new java.awt.Point(250, 200));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         jLabel1.setText("Scoops:");
@@ -137,7 +143,7 @@ public class IceCreamSundaeDialog extends javax.swing.JDialog {
                         .addComponent(jButton2)
                         .addGap(31, 31, 31)
                         .addComponent(jButton3)))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,6 +240,10 @@ public class IceCreamSundaeDialog extends javax.swing.JDialog {
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

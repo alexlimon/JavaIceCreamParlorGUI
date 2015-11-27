@@ -8,17 +8,14 @@ package GUI;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-/**
- Alex Limon Naranjo
- 1000818599
- 09/14/2015
- CSE 1325-003
- */
+
 public class XOrder {
     private boolean paid;
     private int ordernumber;
     private XWorker orderWorker;
     private XCustomer orderCustomer;
+
+   
     private ArrayList <XServing> servings;
     private XServing tempserving;
     private sIceCreamCone tempcone;
@@ -26,10 +23,24 @@ public class XOrder {
     private sIceCreamSundae tempsundae;
     private sBananaSplit tempsplit;
     private sRootBeerFloat tempfloat;
-    
+    private int totalicecreams=0;
     
     private double totalCost=0.00;
-
+    private double oneservingcost=0.00;
+   
+    
+         
+  
+    
+    
+   //not much to use here yet... but here is what I was told to put 
+    public XOrder(){
+    System.out.println("Created Order.");
+    paid= false;
+    servings = new ArrayList<>();
+    
+   
+}
     public int getOrdernumber() {
         return ordernumber;
     }
@@ -45,19 +56,6 @@ public class XOrder {
     public void setTempserving(XServing tempserving) {
         this.tempserving = tempserving;
     }
-    
-         
-  
-    
-    
-   //not much to use here yet... but here is what I was told to put 
-    public XOrder(){
-    System.out.println("Created Order.");
-    paid= false;
-    servings = new ArrayList<>();
-    
-   
-}
     public void setPeople(XCustomer currentCustomer,XWorker currentWorker){
         this.orderCustomer= currentCustomer;
         this.orderWorker= currentWorker;
@@ -66,13 +64,20 @@ public class XOrder {
         
         
 }
+ public void setOneservingcost(double oneservingcost) {
+        this.oneservingcost = oneservingcost;
+    }
 
+    public int getTotalicecreams() {
+        return totalicecreams;
+    }
+
+   
   public void createServing(String[]icecreamflavors,int servingtype,int type,boolean nuts,int bananatopping[]) throws FileNotFoundException{
       
-      
-      
-      
-      
+      totalCost+=oneservingcost;
+    
+      totalicecreams+=icecreamflavors.length;
       
       switch(servingtype)
       {
@@ -80,59 +85,41 @@ public class XOrder {
           case 1:
             tempcone = new sIceCreamCone();
             tempcone.setConetype(type);
+            tempcone.setOverallprice(oneservingcost);
             tempcone.setScoops(icecreamflavors);
-            tempcone.calcprice();
-            totalCost= totalCost+tempcone.getOverallprice();
             servings.add(tempcone);
             break;
           case 2:
             tempsundae = new sIceCreamSundae();
+            tempsundae.setOverallprice(oneservingcost);
             tempsundae.setScoops(icecreamflavors);
             tempsundae.setTopping(type);
             tempsundae.setNuts(nuts);
-            tempsundae.calcprice();
-            totalCost= totalCost+tempsundae.getOverallprice();
             servings.add(tempsundae);
             break;
           case 3:
             tempsplit = new sBananaSplit();
+            tempsplit.setOverallprice(oneservingcost);
             tempsplit.setScoops(icecreamflavors);
             tempsplit.setToppings(bananatopping);
             tempsplit.setNuts(nuts);
-            tempsplit.calcprice();
-            totalCost= totalCost+tempsplit.getOverallprice();
-            servings.add(tempsplit);
+           servings.add(tempsplit);
             break;
           case 4:
             tempsoda = new sIceCreamSoda();
-            tempsoda.calcprice();
-            totalCost= totalCost+(tempsoda.getOverallprice()*2.00);
-           servings.add(tempsoda);
+            tempsoda.setOverallprice(oneservingcost);
+            servings.add(tempsoda);
             break;
           case 5:
             tempfloat = new sRootBeerFloat();
-            tempfloat.calcprice();
-            totalCost= totalCost+tempfloat.getOverallprice();
+            tempfloat.setOverallprice(oneservingcost);
             servings.add(tempfloat);
             break;
       }
            
-            
+  }       
           
          
-     
-      
-              
-              
-      
-      
-     
-      
-      
-      
-      
-   }   
-
     public boolean isPaid() {
         return paid;
     }

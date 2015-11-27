@@ -137,9 +137,13 @@ public class MainFrame extends JFrame implements ActionListener
     OnBreakStockerErrorDialog onBreakSErr;
     OnBreakStockerMessageDialog onBreakSMess;
     OnBreakCashierDialog onBreakCDialog;
+    PaymentDecisionDialog paymentdecisiondialog;
+    
     UpdatedCustomer updateCustomer;
     UpdateWorker updateWorker;
     UpdatedIceCream updatedIceCream;
+    
+    
     
     OrderDialog orderD;
     ServingPromptDialog servingpromptdialog;
@@ -189,6 +193,9 @@ public class MainFrame extends JFrame implements ActionListener
 
         orderD= new OrderDialog(this,true);
         servingpromptdialog = new ServingPromptDialog(this,true);
+        
+        paymentdecisiondialog = new PaymentDecisionDialog(this,true);
+        
         
         dialogAbout=new DialogAbout(this,true);
         aboutOtherDialog= new AboutOtherDialog(this,true);
@@ -317,11 +324,12 @@ public class MainFrame extends JFrame implements ActionListener
                 servingpromptdialog.setIceCreamArray(shop.getIcecreamz());
                 servingpromptdialog.setShopeditor(shop);
                 orderD.setVisible(true);
-                for(i=0;i<shop.getIcecreamz().size();i++) 
-                //orderD.getWorkerChosen();
                 break;
             case cmdTaskPayOrder:
-                //putLine("action:"+cmdTaskPayOrder+"\n");
+                payOrder();
+                
+                
+                String orders[]= new String[0];
                 break;
             case cmdTaskActiveCashier:
                activateCDialog.initComponents(shop.getWorkers());
@@ -989,8 +997,32 @@ public void loadCustomer(){
     }
     
     
-}
+public void payOrder(){
+    int i,ordernonpayed=0;
+    String orders[]= new String[shop.getOrders().size()];
+    
+    for(i=0;i<shop.getOrders().size();i++){
+      if(!shop.getOrders().get(i).isPaid()){
+      orders[ordernonpayed]= "Order Number:"+" "+Integer.toString(i+1) +" "+"Price:"+" "+ Double.toString(shop.getOrders().get(i).getTotalCost());
+      ordernonpayed+=1;
+      }
+     }
+          
+    paymentdecisiondialog.setOrders(orders);
+    paymentdecisiondialog.setShopeditor(shop);
+    paymentdecisiondialog.setVisible(true);
     
 
 
 
+
+
+
+
+ 
+
+}
+
+
+
+}

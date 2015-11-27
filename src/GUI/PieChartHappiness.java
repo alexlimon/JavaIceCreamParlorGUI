@@ -58,7 +58,7 @@ public class PieChartHappiness extends JPanel{
          ArrayList <String> name= new ArrayList<>();
         for(i=0;i<customersHapp.length;i++)
         {
-                Font myFont = new Font("Serif", Font.BOLD, 16);
+                Font myFont = new Font("Serif", Font.PLAIN, 16);
                 if(i==customersHapp.length-1)
                 {
                     endAngle=360-startAngle;
