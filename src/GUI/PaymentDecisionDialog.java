@@ -148,6 +148,7 @@ public class PaymentDecisionDialog extends javax.swing.JDialog {
         payordercashd.setShopeditor(shopeditor);
         payordercashd.setOrderindexpicked(orderindexPicked);
         payordercashd.setVisible(true);
+        getContentPane().removeAll();
         dispose();
         
         

@@ -367,11 +367,16 @@ public class PayOrderCash extends javax.swing.JDialog {
             changegivend.setCtwenties((int)shopeditor.getCtwentys());
             changegivend.setTotalChange(shopeditor.getMoneyleft());
             changegivend.setVisible(true);
+            getContentPane().removeAll();
             dispose();
+            
         }//add how much change is given
         
         else if(errorchecker==2) notenoughmoneyd.setVisible(true); //tell the user they didnt put enough
-        else dispose(); //put exactly the amount
+        else{
+            getContentPane().removeAll();
+            dispose();
+        } //put exactly the amount
                                                     // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
