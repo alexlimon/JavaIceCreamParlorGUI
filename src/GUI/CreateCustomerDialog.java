@@ -96,7 +96,7 @@ public class CreateCustomerDialog extends javax.swing.JDialog {
         this.customerName= jFormattedTextField1.getText();
         
         
- dispose();
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

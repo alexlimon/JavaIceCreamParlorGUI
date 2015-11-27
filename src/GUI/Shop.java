@@ -6,6 +6,7 @@
 package GUI;
 
 import java.io.FileNotFoundException;
+import static java.lang.Math.floor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,7 +34,15 @@ public class Shop {
     private XCashier activecashier;
     private String[] toppings;
     private double tempPriceofServing;
-    
+    private double Cpennies;
+    private double Cnickels;
+    private double Cdimes;
+    private double Cquarters;
+    private double Cones;
+    private double Cfives;
+    private double Ctens;
+    private double Ctwentys;
+    private double moneyleft;
   public Shop(){
     icecreamz= new ArrayList<>();
     customers =new ArrayList<>();
@@ -269,6 +278,42 @@ public class Shop {
    
    
    }
+
+    public double getCpennies() {
+        return Cpennies;
+    }
+
+    public double getCnickels() {
+        return Cnickels;
+    }
+
+    public double getCdimes() {
+        return Cdimes;
+    }
+
+    public double getCquarters() {
+        return Cquarters;
+    }
+
+    public double getCones() {
+        return Cones;
+    }
+
+    public double getCfives() {
+        return Cfives;
+    }
+
+    public double getCtens() {
+        return Ctens;
+    }
+
+    public double getCtwentys() {
+        return Ctwentys;
+    }
+
+    public double getMoneyleft() {
+        return moneyleft;
+    }
    
    
   public void addservingct(int[] icecreampositions, int servingtype,int conetype,boolean nuts, int[] bananatopping) throws FileNotFoundException {
@@ -315,18 +360,10 @@ public class Shop {
    
   public int payorderscash(int orderposition,double pennies, double nickels,double dimes,double quarters,double ones,double fives,double tens, double twentys) throws NotEnoughMoneyException{
     
-    double moneyowed=orders.get(orderposition).getTotalCost();
+     double moneyowed=orders.get(orderposition).getTotalCost();
      double cashgiven;
-     double moneyleft;
+     
      double changeremaining;
-     double Cpennies;
-     double Cnickels;
-     double Cdimes;
-     double Cquarters;
-     double Cones;
-     double Cfives;
-     double Ctens;
-     double Ctwentys;
      cashtransaction= new moneyformat();
      cashtransaction.setPennies(pennies);
      cashtransaction.setNickels(nickels);
@@ -342,6 +379,7 @@ public class Shop {
      
      if(orders.get(orderposition).getOrderCustomer().getMoney()<moneyowed)
      {
+         
          throw new NotEnoughMoneyException();
          
      }
@@ -351,48 +389,72 @@ public class Shop {
      if(moneyleft==0){
          orders.get(orderposition).setPaid(true);//this will deem the order payed
          orders.get(orderposition).getOrderCustomer().setdMoney(pennies, nickels, dimes, quarters, ones, fives, tens, twentys);//this will decrease the customers money
-         orders.get(orderposition).getOrderCustomer().setHappiness(orders.get(orderposition).getOrderCustomer().getHappiness()+ orders.get(orderposition).getServings().size());//this will set customers happiness based on the number of servings plus what it has already
+         orders.get(orderposition).getOrderCustomer().setHappiness(orders.get(orderposition).getOrderCustomer().getHappiness()+ orders.get(orderposition).getTotalicecreams());//this will set customers happiness based on the number of servings plus what it has already
          register.getTill().increaseupdate(pennies, nickels, dimes, quarters, ones, fives, tens, twentys);
          orders.get(orderposition).getOrderWorker().setMoneytaken(moneyowed+orders.get(orderposition).getOrderWorker().getMoneytaken());//this will update how much worker has taken
          
          
              }
      else if(moneyleft<0){
-       /*  changeremaining=cashgiven;
-         if(cashgiven%20!=cashgiven)
+         moneyleft= moneyleft*(-1);
+         changeremaining=moneyleft;
+         if(changeremaining%20!=changeremaining)
          {
-         changeremaining=cashgiven%20;
-         Ctwentys= cashgiven/20;
-         Ctwentys= Math.round(Ctwentys);
+         Ctwentys= floor(changeremaining/20);
+         changeremaining= changeremaining%20;
          }
          if(changeremaining%10!=changeremaining)
          {
-         changeremaining=cashgiven%10;
-         Ctwentys= cashgiven/10;
-         Ctwentys= Math.round(Ctwentys);
-             
-             
-             
-             
+         Ctens= floor(changeremaining/10);
+         changeremaining= changeremaining%20;
          }
-         
-         
-         
+         if(changeremaining%5!=changeremaining)
+         {
+         Cfives= floor(changeremaining/5);
+         changeremaining= changeremaining%5;
          }
-         */
-         return 1;//returns 1 incase the user put too much
+         if(changeremaining%1!=changeremaining)
+         {
+         Cones= floor(changeremaining/1);
+         changeremaining= changeremaining%1;
+         }
+         if(changeremaining%.25!=changeremaining)
+         {
+         Cquarters= floor(changeremaining/.25);
+         changeremaining= changeremaining%.25;
+         }
+         if(changeremaining%.10!=changeremaining)
+         {
+         Cdimes= floor(changeremaining/.10);
+         changeremaining= changeremaining%.10;
+         }
+         if(changeremaining%.05!=changeremaining)
+         {
+         Cnickels= floor(changeremaining/.05);
+         changeremaining= changeremaining%.05;
+         }
+         if(changeremaining%.01!=changeremaining)
+         {
+         Cpennies= floor(changeremaining/.01);
+         changeremaining= changeremaining%.01;
+         }
+     
+    orders.get(orderposition).setPaid(true);
+    orders.get(orderposition).getOrderCustomer().setdMoney(pennies, nickels, dimes, quarters, ones, fives, tens, twentys);
+    orders.get(orderposition).getOrderCustomer().setiMoney(Cpennies, Cnickels, Cdimes, Cquarters, Cones, Cfives, Ctens, Ctwentys);
+    orders.get(orderposition).getOrderCustomer().setHappiness(orders.get(orderposition).getOrderCustomer().getHappiness()+ orders.get(orderposition).getTotalicecreams());
+    register.getTill().increaseupdate(pennies, nickels, dimes, quarters, ones, fives, tens, twentys);
+    register.getTill().decreaseupdate(Cpennies, Cnickels, Cdimes, Cquarters, Cones, Cfives, Ctens, Ctwentys);
+    orders.get(orderposition).getOrderWorker().setMoneytaken(moneyowed+orders.get(orderposition).getOrderWorker().getMoneytaken());
+    
+    
+    return 1;//returns 1 incase the user put too much
      }
      
      
      else if(moneyleft>0) {
          
-         
-         
-         
-         
-    
-      
-      return 2; //returns 2 incase user put too little
+          return 2; //returns 2 incase user put too little
          
      }
      

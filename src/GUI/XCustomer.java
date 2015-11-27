@@ -96,7 +96,11 @@ public class XCustomer {
        money=wallet.getoverallMoney();
     }
     
-    
+     public void setiMoney(double pennies, double nickels, double dimes, double quarters, double ones, double fives, double tens, double twentys)
+    {
+       wallet.increaseupdate(pennies, nickels, dimes, quarters, ones, fives, tens, twentys);
+       money=wallet.getoverallMoney();
+    }
     
     
     

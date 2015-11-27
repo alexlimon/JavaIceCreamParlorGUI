@@ -58,7 +58,7 @@ public class IceCreamSundaeDialog extends javax.swing.JDialog {
         jRadioButton1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(625, 214));
+        setLocation(new java.awt.Point(250, 200));
 
         jButton2.setText("Apply");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

@@ -137,7 +137,10 @@ public class MainFrame extends JFrame implements ActionListener
     OnBreakStockerErrorDialog onBreakSErr;
     OnBreakStockerMessageDialog onBreakSMess;
     OnBreakCashierDialog onBreakCDialog;
+    
     PaymentDecisionDialog paymentdecisiondialog;
+    PayOrderCash payordercashd;
+    GivenNotEnoughD notenoughmoneyd;
     
     UpdatedCustomer updateCustomer;
     UpdateWorker updateWorker;
@@ -195,6 +198,7 @@ public class MainFrame extends JFrame implements ActionListener
         servingpromptdialog = new ServingPromptDialog(this,true);
         
         paymentdecisiondialog = new PaymentDecisionDialog(this,true);
+        payordercashd = new PayOrderCash(this,true);
         
         
         dialogAbout=new DialogAbout(this,true);
@@ -1010,6 +1014,7 @@ public void payOrder(){
           
     paymentdecisiondialog.setOrders(orders);
     paymentdecisiondialog.setShopeditor(shop);
+    paymentdecisiondialog.setPayordercashd(payordercashd);
     paymentdecisiondialog.setVisible(true);
     
 

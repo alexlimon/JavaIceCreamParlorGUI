@@ -11,9 +11,14 @@ package GUI;
  */
 public class PaymentDecisionDialog extends javax.swing.JDialog {
 
-    String orders[];
-    Shop shopeditor;
+    private String orders[];
+    private Shop shopeditor;
+    private PayOrderCash payordercashd;
 
+    public void setPayordercashd(PayOrderCash payordercashd) {
+        this.payordercashd = payordercashd;
+    initComponents();
+    }
     
     
     
@@ -33,7 +38,7 @@ public class PaymentDecisionDialog extends javax.swing.JDialog {
     
     public void setOrders(String[] orders) {
         this.orders = orders;
-        initComponents();
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,12 +56,18 @@ public class PaymentDecisionDialog extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(250, 200));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(orders));
 
         jLabel1.setText("Choose the order you would like to pay:");
 
         jButton1.setText("Pay Cash");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Pay Credit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +137,22 @@ public class PaymentDecisionDialog extends javax.swing.JDialog {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int i,orderindexPicked;
+        String tempLine[];
+        String orderpicked=jComboBox1.getSelectedItem().toString();
+        tempLine= orderpicked.split(" ");
+       
+        orderindexPicked= (Integer.parseInt(tempLine[2]))-1;
+        payordercashd.setShopeditor(shopeditor);
+        payordercashd.setOrderindexpicked(orderindexPicked);
+        payordercashd.setVisible(true);
+        
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

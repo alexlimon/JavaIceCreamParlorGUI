@@ -22,6 +22,7 @@ public class ServingPromptDialog extends javax.swing.JDialog {
     private IceCreamConeDialog icecreamconedialog;
     private IceCreamSundaeDialog icecreamsundaedialog;
     private IceCreamSodaDialog icecreamsodadialog;
+    private RootBeerConfirmationD rootbdialog;
     
     boolean nuts=false;
     private String[] icecreams;
@@ -43,7 +44,7 @@ public class ServingPromptDialog extends javax.swing.JDialog {
         icecreamconedialog = new IceCreamConeDialog(parent,true);
         icecreamsundaedialog = new IceCreamSundaeDialog(parent,true);
         icecreamsodadialog= new IceCreamSodaDialog(parent,true);
-        
+        rootbdialog = new RootBeerConfirmationD(parent,true);
         initComponents();
     }
 
@@ -335,7 +336,7 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                 
           }
                  
-                
+                rootbdialog.setVisible(true);
                 break;
                 
            
