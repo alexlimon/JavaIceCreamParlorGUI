@@ -57,13 +57,14 @@ public class PieChartMoney extends JPanel {
             
         }
         int z=500,v=100;
-        
-         Arrays.sort(this.workersMoney);
+       ArrayList <String> name= new ArrayList<>();  //to keep track of the names already displayed, if the money taken is the same amount for all workers
+       Arrays.sort(this.workersMoney);
          
         for(i=0;i<workersMoney.length;i++)
         {
                 
-                 Font myFont = new Font("Serif", Font.PLAIN, 16);
+                Font myFont = new Font("Serif", Font.PLAIN, 16);
+
                 if(i==workersMoney.length-1)
                 {
                     endAngle=360-startAngle;
@@ -73,11 +74,21 @@ public class PieChartMoney extends JPanel {
                       
                          if(temp==workerz.get(j).getMoneytaken())
                         {
-                           
-                            g.setColor(colorArray[i]);
-                            g.setFont(myFont);
-                            g.drawString(workerz.get(j).getName(), z, v);
-                            
+
+                            if(name.contains(workerz.get(j).getName()))  //if the current worker's name is already displayed, move on to the next worker
+                            {
+                                continue;
+                                
+                               
+                            }
+                            else{
+                                name.add(workerz.get(j).getName());  
+                                g.setColor(colorArray[i]);
+                                g.setFont(myFont);
+                                g.drawString(workerz.get(j).getName(), z, v);
+                                break;
+                            }
+
                         }
                      }
                 }
@@ -88,12 +99,22 @@ public class PieChartMoney extends JPanel {
                     {
                        if(temp==workerz.get(j).getMoneytaken())
                         {
-                          
-                            g.setColor(colorArray[i]);
-                            g.setFont(myFont);
-                            g.drawString(workerz.get(j).getName(), z, v);
-                            
+
+                            if(name.contains(workerz.get(j).getName()))
+                            {
+                                continue;
+                                
+                               
                             }
+                            else{
+                                name.add(workerz.get(j).getName());
+                                g.setColor(colorArray[i]);
+                                g.setFont(myFont);
+                                g.drawString(workerz.get(j).getName(), z, v);
+                                break;
+                            }
+                        }
+
                     }
                 }
                

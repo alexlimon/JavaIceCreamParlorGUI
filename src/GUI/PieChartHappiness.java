@@ -55,6 +55,7 @@ public class PieChartHappiness extends JPanel{
             
         }
          int z=500,v=100;
+         ArrayList <String> name= new ArrayList<>();
         for(i=0;i<customersHapp.length;i++)
         {
                 Font myFont = new Font("Serif", Font.PLAIN, 16);
@@ -66,11 +67,19 @@ public class PieChartHappiness extends JPanel{
                      {
                         if(temp==customerz.get(j).getHappiness())
                         {
-                           
-                            g.setColor(colorArray[i]);
-                            g.setFont(myFont);
-                            g.drawString(customerz.get(j).getName(), z, v);
-                           
+                            if(name.contains(customerz.get(j).getName()))  
+                            {
+                                continue;
+                                
+                               
+                            }
+                            else{
+                                name.add(customerz.get(j).getName());  
+                                g.setColor(colorArray[i]);
+                                g.setFont(myFont);
+                                g.drawString(customerz.get(j).getName(), z, v);
+                                break;
+                            }
                         }
                      }
                 }
@@ -81,11 +90,19 @@ public class PieChartHappiness extends JPanel{
                      {
                         if(temp==customerz.get(j).getHappiness())
                         {
-                           
-                            g.setColor(colorArray[i]);
-                            g.setFont(myFont);
-                            g.drawString(customerz.get(j).getName(), z, v);
-                           
+                            if(name.contains(customerz.get(j).getName()))  
+                            {
+                                continue;
+                                
+                               
+                            }
+                            else{
+                                name.add(customerz.get(j).getName());  
+                                g.setColor(colorArray[i]);
+                                g.setFont(myFont);
+                                g.drawString(customerz.get(j).getName(), z, v);
+                                break;
+                            }
                         }
                      }
                 }
