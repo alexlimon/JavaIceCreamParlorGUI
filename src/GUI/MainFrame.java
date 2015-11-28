@@ -394,6 +394,10 @@ public class MainFrame extends JFrame implements ActionListener
                 putLine("action:"+cmdChartBarMoney+"\n");
                 break;
             case cmdAboutTeam:
+                for(i=0;i<shop.getWorkers().size();i++) System.out.println(shop.getWorkers().get(i).getMoneytaken());
+                System.out.println("");
+                for(i=0;i<shop.getCustomers().size();i++) System.out.println(shop.getCustomers().get(i).getHappiness());
+                
                 dialogAbout.setVisible(true);
                 break;
             case cmdAboutOther:

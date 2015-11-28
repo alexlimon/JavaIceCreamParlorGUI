@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Mistere
+ * @author THETEAM
  */
 public class OrderDialog extends javax.swing.JDialog {
 
@@ -165,7 +165,8 @@ public class OrderDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       dispose();
+        getContentPane().removeAll();
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -185,13 +186,18 @@ public class OrderDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+       this.customerChosen=jComboBox1.getSelectedItem().toString();
+       this.workerChosen=jComboBox2.getSelectedItem().toString();
+       
         servingPDialog.setCustomerposition(getCustomerposition(customerChosen));
         servingPDialog.setWorkerposition(getWorkerposition(workerChosen));
         
+        
         dispose();
+        servingPDialog.setVisible(true);
+        getContentPane().removeAll();
          
-         
-         servingPDialog.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

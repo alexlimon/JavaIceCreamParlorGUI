@@ -176,7 +176,8 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        firstserving=true;
-        dispose();
+       
+       dispose();
 
 
 
@@ -188,7 +189,8 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       dispose();        // TODO add your handling code here:
+
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -334,11 +336,11 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                         Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                 
-          }
+                        }
                  
-                rootbdialog.setVisible(true);
-                break;
-                
+                    rootbdialog.setVisible(true);
+                    break;
+        }
            
           
           
@@ -347,8 +349,8 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
           
           
           
-      }
-        // TODO add your handling code here:
+      
+       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
