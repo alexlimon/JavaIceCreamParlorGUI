@@ -156,6 +156,9 @@ public class MainFrame extends JFrame implements ActionListener
     
     PieChartMoney pc;
     PieChartHappiness pcH;
+    BarChart bChart;
+    ArrayList<XDataNode> dataNodes;
+    
     
     public MainFrame()
     {
@@ -206,8 +209,14 @@ public class MainFrame extends JFrame implements ActionListener
        
         shop = new Shop();
         
+        dataNodes=new ArrayList<>();
+        
+        
         BorderLayout gl=new BorderLayout();
         this.setLayout(gl);
+        
+        bChart=new BarChart();
+        
         pc=new PieChartMoney();
         pcH=new PieChartHappiness();
         
@@ -388,10 +397,20 @@ public class MainFrame extends JFrame implements ActionListener
                
                 break;
             case cmdChartBarHappiness:
-                //putLine("action:"+cmdChartBarHappiness+"\n");
+                i=0;
+                shop.CusDataBuilder(shop.getCustomers());
+                dataNodes=shop.getCdataArr();
+                dataNodes=shop.SortArrayList(dataNodes);
+                bChart.setData(dataNodes);
+                doBarChart(i);
                 break;
             case cmdChartBarMoney:
-                putLine("action:"+cmdChartBarMoney+"\n");
+                i=1;
+                shop.WDataBuilder(shop.getWorkers());
+                dataNodes=shop.getWdataArr();
+                dataNodes=shop.SortArrayList(dataNodes);
+                bChart.setData(dataNodes);
+                doBarChart(i);
                 break;
             case cmdAboutTeam:
                 for(i=0;i<shop.getWorkers().size();i++) System.out.println(shop.getWorkers().get(i).getMoneytaken());
@@ -443,6 +462,14 @@ public class MainFrame extends JFrame implements ActionListener
        this.validate();
    }
 
+   
+  private void doBarChart(int I) {
+        bChart.setChoice(I);
+        this.getContentPane().removeAll();
+        this.getContentPane().add(bChart,BorderLayout.CENTER);
+        this.repaint();
+        this.validate();
+    } 
 
 public void loadIceCream(){
                 

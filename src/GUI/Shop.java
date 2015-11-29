@@ -8,6 +8,7 @@ package GUI;
 import java.io.FileNotFoundException;
 import static java.lang.Math.floor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Scanner;
  09/14/2015
  CSE 1325-003
  *///constructor for shop with all of the classes, memory handling is below
-public class Shop {
+    public class Shop {
     private ArrayList <XIceCream> icecreamz;
     private ArrayList <XCustomer> customers;
     private ArrayList <XWorker> workers;
@@ -43,13 +44,19 @@ public class Shop {
     private double Ctens;
     private double Ctwentys;
     private double moneyleft;
+    private XDataNode dataNode;
+    private ArrayList<XDataNode> CdataArr;
+    private ArrayList<XDataNode> WdataArr;
+    
+    
   public Shop(){
     icecreamz= new ArrayList<>();
     customers =new ArrayList<>();
     workers= new ArrayList<>();
     orders= new ArrayList<>();
     register = new XRegister();
-  
+    CdataArr = new ArrayList<>();
+    WdataArr = new ArrayList<>();
     String[] toppings={"Strawberry","Chocolate Syrup","Marshmellow Cream","Pineapple","Ketchup","Mustard","Pickle Relish","Soda","Banana"};
             
     
@@ -684,7 +691,96 @@ public int cashierBreak(int cashierposition){
           
    } 
 
+public void CusDataBuilder(ArrayList<XCustomer> Clist){
+        
+        int i;
+        CdataArr= new ArrayList<XDataNode>();
+            for(i=0; i<Clist.size(); i++)
+            {
+                dataNode = new XDataNode();
+                dataNode.setName(Clist.get(i).getName());  
+                dataNode.setAmount(Clist.get(i).getHappiness());
+                CdataArr.add(dataNode);
+            
+            }
+    }  
 
+    public ArrayList<XDataNode> getCdataArr() {
+        return CdataArr;
+    }
+
+    public ArrayList<XDataNode> getWdataArr() {
+        return WdataArr;
+    }
+      
+     
+    public void WDataBuilder(ArrayList<XWorker> Wlist){
+        
+        int i;
+        WdataArr=new ArrayList<XDataNode>();
+            for(i=0; i<Wlist.size(); i++)
+            {
+                dataNode = new XDataNode();
+                dataNode.setName(Wlist.get(i).getWName());
+                dataNode.setAmount((int) Wlist.get(i).getMoneytaken());
+                WdataArr.add(dataNode);
+            }
+             
+    }
+ 
+    public ArrayList <XDataNode> SortArrayList(ArrayList <XDataNode> dataN){
+        
+        
+        int max=dataN.size();
+        int i, j, x;
+       
+        ArrayList<XDataNode> dataArL= new ArrayList<>();
+        int[]Arr=new int[max];
+        String Temp="";
+        for(i=0; i<max; i++)
+        {
+            Arr[i]=dataN.get(i).getAmount();
+        }
+       ArrayList <String> name= new ArrayList<>(); 
+       Arrays.sort(Arr);
+        for(i=0;i<max;i++){
+            x=Arr[i]; 
+          for(j=0;j<max;j++)
+                       
+                     {
+                        if(x==dataN.get(j).getAmount())
+                        {
+                            if(name.contains(dataN.get(j).getName()))  
+                            {
+                                continue;
+                                
+                               
+                            }
+                            else{
+                                 name.add(dataN.get(j).getName());  
+                                 dataNode = new XDataNode();
+                                 dataNode.setAmount(dataN.get(j).getAmount());
+                                 dataNode.setName(dataN.get(j).getName());
+                                 dataArL.add(dataNode);
+                                break;
+                            }
+                        }
+       
+                     }
+        }
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       return dataArL;      
+        
+    }
 
 
 
