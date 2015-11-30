@@ -59,8 +59,7 @@ public class BarChart extends JPanel{
                     Arr[i]=Arr[j];
                     Arr[j]=x;
                 }
-            }
-        System.out.println(Arr[i]);    
+            }    
         }
         
         biggest=Arr[max-1];
