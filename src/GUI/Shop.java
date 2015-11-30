@@ -10,6 +10,7 @@ import static java.lang.Math.floor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -237,8 +238,9 @@ import java.util.Scanner;
          
        }
           
-           if(icecreamz.get(icecreampositions[i]).getScoopsleft()<1){
+            if(icecreamz.get(icecreampositions[i]).getScoopsleft()<1){
                 
+               JOptionPane.showMessageDialog(null, "Please place a new order.", "Not Enough Ice Cream Exception", JOptionPane.ERROR_MESSAGE);
                throw new NotEnoughIceCreamException();
            }
            }
@@ -323,7 +325,7 @@ import java.util.Scanner;
     }
    
    
-  public void addservingct(int[] icecreampositions, int servingtype,int conetype,boolean nuts, int[] bananatopping) throws FileNotFoundException {
+  public void addservingct(int[] icecreampositions, int servingtype,int conetype,boolean nuts, int[] bananatopping) throws FileNotFoundException, NotEnoughIceCreamException {
       
      int i; 
      tempPriceofServing=0;
@@ -355,6 +357,11 @@ import java.util.Scanner;
                 
          
        }
+        if(icecreamz.get(icecreampositions[i]).getScoopsleft()<1){
+                
+               JOptionPane.showMessageDialog(null, "Please place a new order.", "Not Enough Ice Cream Exception", JOptionPane.ERROR_MESSAGE);
+               throw new NotEnoughIceCreamException();
+           }
        }
       
       orders.get(currenttransaction).setOneservingcost(tempPriceofServing);
@@ -386,6 +393,8 @@ import java.util.Scanner;
      
      if(orders.get(orderposition).getOrderCustomer().getMoney()<moneyowed)
      {
+         
+         JOptionPane.showMessageDialog(null, "Please use a different customer.", "Not Enough Money Exception", JOptionPane.ERROR_MESSAGE);
          
          throw new NotEnoughMoneyException();
          
