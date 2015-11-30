@@ -44,7 +44,7 @@ public class PieChartHappiness extends JPanel{
         
         
         
-        Color[] colorArray=new Color[]{Color.BLACK,Color.BLUE,Color.YELLOW,Color.RED,Color.GREEN,Color.PINK,Color.CYAN,Color.DARK_GRAY,Color.MAGENTA,Color.ORANGE};
+        Color[] colorArray=new Color[]{Color.BLACK,Color.BLUE,Color.RED,Color.GREEN,Color.ORANGE,Color.PINK,Color.CYAN,Color.DARK_GRAY,Color.MAGENTA,Color.YELLOW};
         
         int i;
         double total=0;
@@ -54,7 +54,7 @@ public class PieChartHappiness extends JPanel{
             total+=customersHapp[i];
             
         }
-         int z=500,v=100;
+         int z=500,v=200;
          ArrayList <String> name= new ArrayList<>();
         for(i=0;i<customersHapp.length;i++)
         {
@@ -77,6 +77,9 @@ public class PieChartHappiness extends JPanel{
                                 name.add(customerz.get(j).getName());  
                                 g.setColor(colorArray[i]);
                                 g.setFont(myFont);
+                                g.drawRect(z-25,v-15,15,15);
+                                g.fillRect(z-25, v-15, 15, 15);
+                                g.setFont(new Font("TimesRoman", Font.BOLD, 20));
                                 g.drawString(customerz.get(j).getName(), z, v);
                                 break;
                             }
@@ -100,6 +103,9 @@ public class PieChartHappiness extends JPanel{
                                 name.add(customerz.get(j).getName());  
                                 g.setColor(colorArray[i]);
                                 g.setFont(myFont);
+                                g.drawRect(z-25,v-15,15,15);
+                                g.fillRect(z-25, v-15, 15, 15);
+                                g.setFont(new Font("TimesRoman", Font.BOLD, 20));
                                 g.drawString(customerz.get(j).getName(), z, v);
                                 break;
                             }
@@ -110,13 +116,16 @@ public class PieChartHappiness extends JPanel{
                 
                 g.fillArc(x, y, width, height, startAngle, endAngle);
                 startAngle=endAngle+startAngle;
-                v+=15;
+                v+=35;
             
                
         }
         
-       
-        
+        String title="HAPPINESS PIE CHART";
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("TimesRoman", Font.BOLD, 20));
+        g.drawString(title, 200, 50);
+        g.drawLine(200,53,200+(12*title.length()),53);  
             
             
            

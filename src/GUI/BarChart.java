@@ -60,7 +60,9 @@ public class BarChart extends JPanel{
                     Arr[j]=x;
                 }
             }
-        }    
+        System.out.println(Arr[i]);    
+        }
+        
         biggest=Arr[max-1];
     }        
     
@@ -75,7 +77,7 @@ public class BarChart extends JPanel{
         for(i=0; i<6; ++i)
         {
             String tickLabel=String.format("%-5d", tick*i);
-            //ugly lines ewww g.drawLine(145, 450-i*tickPos, (145+112*max), 450-i*tickPos);
+            g.drawLine(145, 450-i*tickPos, 150, 450-i*tickPos);
             g.drawString(tickLabel, 120, 450-i*tickPos+g.getFont().getSize()/2);
         }
         
