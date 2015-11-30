@@ -394,7 +394,7 @@ import javax.swing.JOptionPane;
      if(orders.get(orderposition).getOrderCustomer().getMoney()<moneyowed)
      {
          
-         JOptionPane.showMessageDialog(null, "Please use a different customer.", "Not Enough Money Exception", JOptionPane.ERROR_MESSAGE);
+         JOptionPane.showMessageDialog(null, "Please select a different payment method.", "Not Enough Money Exception", JOptionPane.ERROR_MESSAGE);
          
          throw new NotEnoughMoneyException();
          
