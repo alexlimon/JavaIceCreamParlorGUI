@@ -85,6 +85,9 @@ public class PieChartMoney extends JPanel {
                                 name.add(workerz.get(j).getName());  
                                 g.setColor(colorArray[i]);
                                 g.setFont(myFont);
+                                g.drawRect(z-25,v-15,15,15);
+                                g.fillRect(z-25, v-15, 15, 15);
+                                g.setFont(new Font("TimesRoman", Font.BOLD, 20));
                                 g.drawString(workerz.get(j).getName(), z, v);
                                 break;
                             }
@@ -110,6 +113,9 @@ public class PieChartMoney extends JPanel {
                                 name.add(workerz.get(j).getName());
                                 g.setColor(colorArray[i]);
                                 g.setFont(myFont);
+                                g.drawRect(z-25,v-15,15,15);
+                                g.fillRect(z-25, v-15, 15, 15);
+                                g.setFont(new Font("TimesRoman", Font.BOLD, 20));
                                 g.drawString(workerz.get(j).getName(), z, v);
                                 break;
                             }
@@ -122,18 +128,17 @@ public class PieChartMoney extends JPanel {
                 g.fillArc(x, y, width, height, startAngle, endAngle);
                 
                 startAngle=endAngle+startAngle;
-                v+=15;
+                v+=35;
             
             
                
         }
         
-      
-         
-            
-            
-           
-          
+        String title="HAPPINESS PIE CHART";
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("TimesRoman", Font.BOLD, 20));
+        g.drawString(title, 200, 50);
+        g.drawLine(200,53,200+(12*title.length()),53);           
         
     }
     
