@@ -222,7 +222,9 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                         } 
                         catch (FileNotFoundException ex) {
                             Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (NotEnoughIceCreamException ex) {
+              Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+          }
                                 }
                     
               
@@ -249,6 +251,8 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
           try {
               shopeditor.addservingct(icecreampositions, 2, singletopping, nuts, null);
           } catch (FileNotFoundException ex) {
+              Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (NotEnoughIceCreamException ex) {
               Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
           }
                     
@@ -277,7 +281,9 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                             } 
                       catch (FileNotFoundException ex) {
                          Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
-                           }
+                           } catch (NotEnoughIceCreamException ex) {
+          Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+      }
                break;
                 
             case "Ice Cream Soda":
@@ -304,7 +310,9 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                          } 
                     catch (FileNotFoundException ex) {
                         Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (NotEnoughIceCreamException ex) {
+              Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 }
                     
                   
@@ -334,7 +342,9 @@ public void setIceCreamArray(ArrayList <XIceCream> icecreamz){
                              } 
                             catch (FileNotFoundException ex) {
                         Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                                } catch (NotEnoughIceCreamException ex) {
+              Logger.getLogger(ServingPromptDialog.class.getName()).log(Level.SEVERE, null, ex);
+          }
                 
                         }
                  
